@@ -1,7 +1,7 @@
 <template>
   <section class="max-w-screen mx-auto py-4 px-4 md:px-8">
     <div class="background-image absolute inset-0 w-full h-full bg-cover bg-center"></div>
-    <div class="max-w-xl px-8">
+    <div class="max-w-xl px-8 pb-64">
       <div class="pt-96 py-4">
           <h3 class="text-3xl text-black font-semibold md:text-4xl">
             Your world and opportunities, unlocked.
