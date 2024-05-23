@@ -3,10 +3,10 @@
     <div class="background-image absolute inset-0 w-full h-full bg-cover bg-center"></div>
     <div class="max-w-xl px-8 pb-64">
       <div class="pt-96 py-4">
-          <h3 class="text-3xl text-black font-semibold md:text-4xl">
+          <h3 class="text-3xl text-gray-800 font-semibold md:text-4xl">
             Your world and opportunities, unlocked.
           </h3>
-          <p class="text-black leading-relaxed mt-3">
+          <p class="text-gray-800 leading-relaxed mt-3">
             SleeveUp is your one-stop platform to launch your career into the stratosphere. We're more than just a job board - we're a supportive community, a knowledge hub, and a springboard to success.
           </p>
       </div>

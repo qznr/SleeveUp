@@ -1,8 +1,8 @@
 <template>
-  <nav class="bg-white w-full top-0 z-20 px-8">
+  <nav class="bg-white w-full top-0 z-20 px-8 antialiased">
     <div class="items-center px-4 max-w-screen mx-auto lg:flex lg:px-8">
       <div class="flex items-center justify-between py-3 lg:py-4 lg:block">
-        <a href="/" class="font-semibold text-3xl">
+        <a href="/" class="font-semibold text-3xl text-gray-900">
           SleeveUp!
         </a>
         <div class="lg:hidden">
@@ -25,7 +25,7 @@
             </li>
             <li class="mt-8 lg:mt-0">
               <a href="javascript:void(0)"
-                class="py-3 px-4 text-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow block lg:inline">
+                class="py-3 px-4 text-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow block lg:inline">
                 Sign Up
               </a>
             </li>
@@ -33,8 +33,8 @@
         </div>
         <div class="flex-1">
           <ul class="ml-6 justify-left items-left space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
-            <li v-for="link in navigation" :key="link.id" class="text-gray-600 hover:text-indigo-600">
-              <a :href="link.router" class="font-medium">
+            <li v-for="link in navigation" :key="link.id" class="text-black hover:text-indigo-600">
+              <a :href="link.router" class="font-light">
                 {{ link.title }}
               </a>
             </li>
