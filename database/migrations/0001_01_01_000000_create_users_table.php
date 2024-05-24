@@ -23,6 +23,7 @@ return new class extends Migration
             $table->json('skills')->nullable(); // Assuming skills is an array
             $table->text('experience')->nullable();
             $table->string('certificate')->nullable();
+            $table->string('img')->nullable();
             $table->foreignId('role_id')->constrained('roles')->default(1);
             $table->timestamps();
         });

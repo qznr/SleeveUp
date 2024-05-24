@@ -3,7 +3,7 @@
     <div
       class="w-full h-full rounded-full bg-gradient-to-r from-[#58AEF1] to-pink-500 absolute -top-12 -right-14 blur-2xl opacity-10">
     </div>
-    <div class="relative max-w-2xl mx-auto sm:text-center pt-14">
+    <div class="relative max-w-2xl mx-auto sm:text-center pt-14 px-4">
       <div class="relative z-10">
         <h3 class="text-gray-200 text-3xl font-semibold sm:text-4xl">
             Applying made easy

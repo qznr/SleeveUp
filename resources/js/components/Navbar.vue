@@ -19,6 +19,13 @@
           <ul class="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
             <li class="mt-4 lg:mt-0" v-if="user">
               <a href="/test" class="py-3 px-4 text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0">
+                <img
+                  :src="user.img || defaultImage"
+                  :srcset="user.img ? `${user.img} 1x, ${user.img.replace('.png', '@2x.png')} 2x` : `${defaultImage} 1x, ${defaultImage.replace('.png', '@2x.png')} 2x`"
+                  alt="User Image"
+                  class="w-8 h-8 rounded-full inline-block mr-2"
+                  loading="lazy"
+                >
                 Hi, {{ user.first_name || 'Guest' }}
               </a>
             </li>
@@ -75,7 +82,8 @@ export default {
         { title: "Chatbot", router: "/chatbot" },
         { title: "Feedback", router: "/feedback" },
       ],
-      user: null
+      user: null,
+      defaultImage: '/img/user/placeholder.png' // Provide the path to your default image here
     };
   },
   setup() {
