@@ -24,7 +24,7 @@
               </a>
             </li>
             <li class="mt-8 lg:mt-0">
-              <a href="javascript:void(0)"
+              <a href="/register"
                 class="py-3 px-4 text-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow block lg:inline">
                 Sign Up
               </a>
