@@ -71,4 +71,9 @@ class UserController extends Controller
 
         return response()->json(['exists' => $emailExists]);
     }
+
+    public function getUser(Request $request)
+    {
+        return response()->json(['user' => Auth::user()]);
+    }
 }

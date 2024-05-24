@@ -18,6 +18,8 @@ Route::get('/register',[UserController::class,'showRegister']);
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/check-email', [UserController::class, 'checkEmail']);
 
+Route::get('/user', [UserController::class, 'getUser']);
+
 Route::get('/test', function () {
     return view('user.auth-test');
 })->middleware('auth');
