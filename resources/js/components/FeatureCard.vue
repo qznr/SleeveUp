@@ -6,7 +6,7 @@
     <p class="mt-2 text-base text-gray-200">{{ desc }}</p> -->
     <!-- Position X : {{ mouseX }} - Position Y {{ mouseY }} -->
   <!-- </li> -->
-  <li class="bg-white space-y-3 p-4 border rounded-xl shadow-xl relative overflow-hidden" @mousemove="handleMousemove">
+  <li class="bg-white space-y-3 p-4 border rounded-xl shadow-xl relative overflow-hidden">
     <div class="flex items-center mb-4 text-purple-600" v-html="icon"></div>
     <h5 class="text-xl font-semibold text-gray-800">{{ title }}</h5>
     <p class="mt-2 text-base text-gray-800">{{ desc }}</p>
