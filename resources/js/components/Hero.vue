@@ -10,7 +10,7 @@
           SleeveUp is your one-stop platform to launch your career into the stratosphere. We're more than just a job board - we're a supportive community, a knowledge hub, and a springboard to success.
         </p>
       </div>
-      <a href="javascript:void(0)" class="group px-4 py-2 text-white font-medium bg-green-400 rounded-md inline-flex items-center">
+      <a href="javascript:void(0)" class="group px-4 py-2 text-white font-medium bg-indigo-600 rounded-md inline-flex items-center">
           Check it out!
       </a>
     </div>
