@@ -36,8 +36,8 @@
 
 <script setup>
 import { ref } from 'vue'
-import EmailInput from './EmailInput.vue'
-import PasswordInput from './PasswordInput.vue'
+import EmailInput from '../components/EmailInput.vue'
+import PasswordInput from '../components/PasswordInput.vue'
 import axios from 'axios'
 
 const email = ref('')

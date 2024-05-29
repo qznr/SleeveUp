@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import FeatureCard from './FeatureCard.vue';
+import FeatureCard from '../components/FeatureCard.vue';
 
 export default {
   name: 'FeaturesSection',

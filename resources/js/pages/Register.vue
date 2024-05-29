@@ -35,14 +35,14 @@
           </form>
         </div>
       </div>
-  </div>
+    </div>
   </section>
 </template>
 
 <script setup>
   import { ref, watch} from 'vue'
-  import EmailInput from './EmailInput.vue'
-  import PasswordInput from './PasswordInput.vue'
+  import EmailInput from '../components/EmailInput.vue'
+  import PasswordInput from '../components/PasswordInput.vue'
 
   const email = ref('')
   const password = ref('')
