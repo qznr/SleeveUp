@@ -12,7 +12,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'email', 'password', 'first_name', 'last_name', 'age', 'gender', 'education_level', 'skills', 'experience', 'certificate', 'img', 'role_id'
+        'email', 'password', 'first_name', 'last_name', 'gender', 'date_of_birth', 'place_of_birth', 'img',
     ];
 
     protected $hidden = [
@@ -24,8 +24,30 @@ class User extends Authenticatable
         'skills' => 'array',
     ];
 
-    public function role()
+    public function applicant()
     {
-        return $this->belongsTo(Role::class);
+        return $this->hasOne(Applicant::class);
+    }
+
+    public function employer()
+    {
+        return $this->hasOne(Employer::class);
+    }
+
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+
+    public function getRoleAttribute()
+    {
+        if ($this->admin) {
+            return 'admin';
+        } elseif ($this->employer) {
+            return 'employer';
+        } elseif ($this->applicant) {
+            return 'applicant';
+        }
+        return 'unknown';
     }
 }

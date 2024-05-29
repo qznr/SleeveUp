@@ -17,14 +17,10 @@ return new class extends Migration
             $table->string('password');
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();
-            $table->integer('age')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('education_level')->nullable();
-            $table->json('skills')->nullable(); // Assuming skills is an array
-            $table->text('experience')->nullable();
-            $table->string('certificate')->nullable();
+            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->date('date_of_birth')->nullable();
+            $table->string('place_of_birth')->nullable();
             $table->string('img')->nullable();
-            $table->foreignId('role_id')->constrained('roles')->default(1);
             $table->timestamps();
         });
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use App\Models\Applicant;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,24 +18,32 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+        // Validate the incoming request data
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
+        // If validation fails, return the error messages
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()], 422);
         }
-        $userRole = Role::where('name', 'user')->first();
 
+        // Create a new User instance and save it to the database
         $user = new User();
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
-        $user->role_id = $userRole->id;
         $user->save();
 
+        // Create an associated Applicant record
+        $applicant = new Applicant();
+        $applicant->user_id = $user->id;
+        $applicant->save();
+
+        // Log in the user
         Auth::login($user);
 
+        // Return a success response
         return response()->json(['message' => 'User registered successfully'], 201);
     }
 
