@@ -19,25 +19,19 @@ Open your terminal and navigate to the project directory. Run the following comm
 npm install
 ```
 
-3. Start the Development Server
-After the installation is complete, start the development server using the following command:
-```
-npm run dev
-```
-
-4. Migrate the Database
+3. Migrate the Database
 Next, migrate the database tables. Make sure your database connection settings are correctly configured in your .env file. Run the following command:
 ```
 php artisan migrate
 ```
 
-5. Seed the Database
-Seed the database with initial data by running the following command:
+4. Start the Development Server
+Start the development server using the following command:
 ```
-php artisan db:seed --class=RolesTableSeeder
+npm run dev
 ```
 
-6. Start the PHP Server
+5. Start the PHP Server
 Finally, start the PHP server using the following command:
 ```
 php artisan serve
