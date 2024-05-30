@@ -38,6 +38,7 @@
 import { ref } from 'vue'
 import EmailInput from '../components/EmailInput.vue'
 import PasswordInput from '../components/PasswordInput.vue'
+import { useUserStore } from '../stores/userStore';
 import axios from 'axios'
 
 const email = ref('')
@@ -45,6 +46,8 @@ const password = ref('')
 
 const emailError = ref('')
 const passwordError = ref('')
+
+const userStore = useUserStore();
 
 const handleSubmit = async () => {
   // Reset errors
@@ -58,6 +61,8 @@ const handleSubmit = async () => {
     })
     
     if (response.status === 200) {
+      const userResponse = await axios.get('/user');
+      userStore.setUser(userResponse.data.user)
       window.location.href = '/' // Redirect to homepage on successful login
     }
   } catch (error) {

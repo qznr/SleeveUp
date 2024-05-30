@@ -43,6 +43,8 @@
   import { ref, watch} from 'vue'
   import EmailInput from '../components/EmailInput.vue'
   import PasswordInput from '../components/PasswordInput.vue'
+  import { useUserStore } from '../stores/userStore';
+  const userStore = useUserStore();
 
   const email = ref('')
   const password = ref('')
@@ -99,6 +101,8 @@
         });
         // Redirect to homepage if registration is successful
         if (response.status === 201) {
+          const userResponse = await axios.get('/user');
+          userStore.setUser(userResponse.data.user)
           window.location.href = '/';
         }
       } catch (error) {

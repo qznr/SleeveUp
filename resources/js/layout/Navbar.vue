@@ -80,43 +80,33 @@
 </style>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from 'axios';
+import { ref, computed, onMounted } from 'vue';
+import { useUserStore } from '../stores/userStore';
 import Dropdown from '../components/Dropdown.vue';
 
+const userStore = useUserStore();
+const open = ref(false);
+const defaultImage = '/img/user/placeholder.png';
 const navigation = [
   { title: "Chatbot", router: "/chatbot" },
   { title: "Feedback", router: "/feedback" },
 ];
 
-const open = ref(false);
-const user = ref(null);
-const defaultImage = '/img/user/placeholder.png'; // Provide the path to your default image here
-
 const menuOpen = () => {
   open.value = !open.value;
 };
 
-const fetchUserData = async () => {
-  try {
-    const response = await axios.get('/user');
-    user.value = response.data.user;
-  } catch (error) {
-    console.error('Error fetching user data', error);
-  }
-};
+const user = computed(() => userStore.user);
 
 const logout = async () => {
   try {
-    await axios.post('/logout');
-    user.value = null;
-    window.location.href = '/'; // Redirect to homepage
+    await userStore.logout();
   } catch (error) {
     console.error('Error during logout', error);
   }
 };
 
 onMounted(() => {
-  fetchUserData();
+  userStore.fetchUser();
 });
 </script>
