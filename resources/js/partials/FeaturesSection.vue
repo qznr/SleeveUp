@@ -1,9 +1,9 @@
 <template>
-  <section class="py-64">
-    <div class="max-w-screen-xl mx-auto px-4 text-gray-600 md:px-8">
+  <section class="py-64 bg-[151126] relative">
+    <div class="max-w-screen-xl mx-auto px-4 text-gray-200 md:px-8">
       <div class="relative max-w-xl mx-auto sm:text-center">
         <div class="relative z-10">
-          <h3 class="text-gray-800 text-3xl font-semibold sm:text-4xl">
+          <h3 class="text-gray-300 text-3xl font-semibold sm:text-4xl">
               This is SleeveUp!
           </h3>
           <p class="mt-3">
@@ -11,7 +11,7 @@
           </p>
         </div>
         <div
-          class="absolute inset-0 max-w-xs mx-auto h-44 blur-[150px]"
+          class="absolute inset-0 max-w-xs mx-auto h-[200] blur-[150px]"
           style="background: linear-gradient(152.92deg, rgba(79, 70, 229, 0.2) 4.54%, rgba(232, 121, 249, 0.26) 34.2%, rgba(79, 70, 229, 0.9) 77.55%);"
         ></div>
       </div>

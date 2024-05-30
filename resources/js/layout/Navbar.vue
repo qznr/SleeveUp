@@ -1,12 +1,12 @@
 <template>
-  <nav class="bg-white w-full top-0 z-20 px-8 antialiased">
+  <nav class="bg-[151126] w-full top-0 z-20 px-8 antialiased">
     <div class="items-center px-4 max-w-screen mx-auto lg:flex lg:px-8">
       <div class="flex items-center justify-between py-3 lg:py-4 lg:block">
-        <a href="/" class="font-semibold text-3xl text-gray-900">
+        <a href="/" class="font-semibold text-3xl text-gray-200">
           SleeveUp!
         </a>
         <div class="lg:hidden">
-          <button class="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
+          <button class="text-gray-200 outline-none border-none p-2 rounded-md focus:border-gray-200 focus:border"
             @click="menuOpen">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="size-5">
               <path fill-rule="evenodd" d="M2 4.75A.75.75 0 0 1 2.75 4h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 4.75Zm7 10.5a.75.75 0 0 1 .75-.75h7.5a.75.75 0 0 1 0 1.5h-7.5a.75.75 0 0 1-.75-.75ZM2 10a.75.75 0 0 1 .75-.75h14.5a.75.75 0 0 1 0 1.5H2.75A.75.75 0 0 1 2 10Z" clip-rule="evenodd" />
@@ -18,24 +18,32 @@
         <div>
           <ul class="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
             <li class="mt-4 lg:mt-0" v-if="user">
-              <a href="/test" class="py-3 px-4 text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0">
-                <img
-                  :src="user.img || defaultImage"
-                  :srcset="user.img ? `${user.img} 1x, ${user.img.replace('.png', '@2x.png')} 2x` : `${defaultImage} 1x, ${defaultImage.replace('.png', '@2x.png')} 2x`"
-                  alt="User Image"
-                  class="w-8 h-8 rounded-full inline-block mr-2"
-                  loading="lazy"
-                >
-                Hi, {{ user.first_name || 'Guest' }}
-              </a>
+              <Dropdown>
+                <template #trigger>
+                  <a href="#" class="py-3 px-4 text-center border text-gray-300 hover:text-[25B4C4] rounded-md block lg:inline lg:border-0">
+                    <img
+                      :src="user.img || defaultImage"
+                      :srcset="user.img ? `${user.img} 1x, ${user.img.replace('.png', '@2x.png')} 2x` : `${defaultImage} 1x, ${defaultImage.replace('.png', '@2x.png')} 2x`"
+                      alt="User Image"
+                      class="w-8 h-8 rounded-full inline-block mr-2"
+                      loading="lazy"
+                    >
+                    Hi, {{ user.first_name || 'Guest' }}
+                  </a>
+                </template>
+                <template #content>
+                  <a href="/profile" class="block px-4 py-2 text-sm text-gray-300 hover:text-gray-900 hover:bg-gray-100">Profile</a>
+                  <a href="#" @click.prevent="logout" class="block px-4 py-2 text-sm text-gray-300 hover:text-gray-900 hover:bg-gray-100">Logout</a>
+                </template>
+              </Dropdown>
             </li>
             <li class="mt-4 lg:mt-0" v-if="!user">
-              <a href="/login" class="py-3 px-4 text-center border text-gray-600 hover:text-indigo-600 rounded-md block lg:inline lg:border-0">
+              <a href="/login" class="py-3 px-4 text-center text-md border font-semibold text-gray-300 hover:text-[25B4C4] rounded-md block lg:inline lg:border-0">
                 Login
               </a>
             </li>
             <li class="mt-8 lg:mt-0" v-if="!user">
-              <a href="/register" class="py-3 px-4 text-center text-white bg-indigo-600 hover:bg-indigo-700 rounded-xl shadow block lg:inline">
+              <a href="/register" class="py-3 px-4 text-center text-md border font-semibold text-gray-300 hover:text-[25B4C4] rounded-md block lg:inline lg:border-0">
                 Sign Up
               </a>
             </li>
@@ -43,7 +51,7 @@
         </div>
         <div class="flex-1">
           <ul class="ml-6 justify-left items-left space-y-8 lg:flex lg:space-x-6 lg:space-y-0">
-            <li v-for="link in navigation" :key="link.id" class="text-black hover:text-indigo-600">
+            <li v-for="link in navigation" :key="link.id" class="text-gray-300 hover:text-[25B4C4]">
               <a :href="link.router" class="font-light">
                 {{ link.title }}
               </a>
@@ -71,37 +79,44 @@
 }
 </style>
 
-<script>
+<script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
+import Dropdown from '../components/Dropdown.vue';
 
-export default {
-  data() {
-    return {
-      navigation: [
-        { title: "Chatbot", router: "/chatbot" },
-        { title: "Feedback", router: "/feedback" },
-      ],
-      user: null,
-      defaultImage: '/img/user/placeholder.png' // Provide the path to your default image here
-    };
-  },
-  setup() {
-    const open = ref(false);
-    
-    const menuOpen = () => {
-      open.value = !open.value;
-    };
+const navigation = [
+  { title: "Chatbot", router: "/chatbot" },
+  { title: "Feedback", router: "/feedback" },
+];
 
-    return { open, menuOpen };
-  },
-  async mounted() {
-    try {
-      const response = await axios.get('/user');
-      this.user = response.data.user;
-    } catch (error) {
-      console.error('Error fetching user data', error);
-    }
+const open = ref(false);
+const user = ref(null);
+const defaultImage = '/img/user/placeholder.png'; // Provide the path to your default image here
+
+const menuOpen = () => {
+  open.value = !open.value;
+};
+
+const fetchUserData = async () => {
+  try {
+    const response = await axios.get('/user');
+    user.value = response.data.user;
+  } catch (error) {
+    console.error('Error fetching user data', error);
   }
 };
+
+const logout = async () => {
+  try {
+    await axios.post('/logout');
+    user.value = null;
+    window.location.href = '/'; // Redirect to homepage
+  } catch (error) {
+    console.error('Error during logout', error);
+  }
+};
+
+onMounted(() => {
+  fetchUserData();
+});
 </script>
