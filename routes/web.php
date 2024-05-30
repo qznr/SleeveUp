@@ -21,9 +21,6 @@ Route::post('/check-email', [UserController::class, 'checkEmail']);
 Route::get('/user', [UserController::class, 'getUser']);
 
 Route::middleware(['auth', 'role:applicant'])->group(function () {
-    Route::get('/test', function () {
-        return view('user.auth-test');
-    });
     Route::get('/profile', function () {
         return view('user.profile');
     });

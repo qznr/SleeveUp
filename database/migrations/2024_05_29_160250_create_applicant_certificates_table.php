@@ -14,11 +14,14 @@ return new class extends Migration
         Schema::create('applicant_certificates', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('type')->nullable();
-            $table->string('timeframe')->nullable();
-            $table->string('skills')->nullable();
-            $table->string('tools')->nullable();
-            $table->string('link')->nullable();
+            $table->string('type');
+            $table->string('start_month');
+            $table->integer('start_year');
+            $table->string('end_month');
+            $table->integer('end_year');
+            $table->string('skills');
+            $table->string('tools');
+            $table->string('link');
             $table->timestamps();
         });
     }

@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->string('location');
             $table->string('role');
-            $table->string('timeframe');
+            $table->integer('start_year');
+            $table->integer('end_year');
             $table->string('skills_and_tools');
             $table->timestamps();
         });

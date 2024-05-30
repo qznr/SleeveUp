@@ -15,12 +15,15 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->enum('gender', ['male', 'female'])->nullable();
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->enum('gender', ['male', 'female'])
+                  ->default('male');
             $table->date('date_of_birth')->nullable();
-            $table->string('place_of_birth')->nullable();
-            $table->string('img')->nullable();
+            $table->string('place_of_birth')
+                  ->default('Malang');
+            $table->string('img')
+                  ->default('/img/user/placeholder.png');
             $table->timestamps();
         });
 

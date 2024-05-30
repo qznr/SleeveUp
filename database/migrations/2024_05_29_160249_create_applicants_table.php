@@ -14,8 +14,15 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('education_level')->nullable();
-            $table->text('description')->nullable();
+            $table->string('bio')
+                  ->default("Hi there! I\'m using SleeveUp.");
+            $table->enum('status', ['Looking for work', 'Looking for investor', 'Looking for partner'])
+                  ->default('Looking for work');
+            $table->text('about_me')
+                  ->default("Welcome to my profile. Here\'s a bit about me.")
+                  ->nullable();
+            $table->string('current_education_or_work')
+                  ->default('Brawijaya University');
             $table->timestamps();
         });
     }

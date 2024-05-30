@@ -16,7 +16,10 @@ return new class extends Migration
             $table->string('name');
             $table->string('description')->nullable();
             $table->string('type');
-            $table->string('timeframe');
+            $table->string('start_month');
+            $table->integer('start_year');
+            $table->string('end_month');
+            $table->integer('end_year');
             $table->string('link')->nullable();
             $table->timestamps();
         });

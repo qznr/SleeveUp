@@ -87,6 +87,8 @@ class UserController extends Controller
 
     public function getUser(Request $request)
     {
-        return response()->json(['user' => Auth::user()]);
+        $user = User::with('applicant', 'employer', 'admin')->find(Auth::id());
+        return response()->json(['user' => $user]);
+    
     }
 }
