@@ -22,6 +22,8 @@ class UserController extends Controller
         $validator = Validator::make($request->all(), [
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
         ]);
 
         // If validation fails, return the error messages
@@ -33,6 +35,9 @@ class UserController extends Controller
         $user = new User();
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+
         $user->save();
 
         // Create an associated Applicant record

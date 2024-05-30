@@ -13,6 +13,16 @@
       <div class="w-full bg-white rounded-lg shadow md:mt-0 sm:max-w-md xl:p-0 ">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
           <form class="space-y-4 md:space-y-6" @submit.prevent="handleSubmit">
+            <div class="grid grid-cols-2 gap-x-8">
+              <div>
+                <label for="first-name" class="block mb-2 text-sm font-medium text-gray-900">First Name</label>
+                <TextInput name="first-name" id="first-name" v-model="firstName" required> </TextInput>
+              </div>
+              <div>
+                <label for="last-name" class="block mb-2 text-sm font-medium text-gray-900">Last Name</label>
+                <TextInput name="last-name" id="last-name" v-model="lastName"> </TextInput>
+              </div>
+            </div>
             <div>
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your email</label>
               <EmailInput name="email" id="email" v-model="email"></EmailInput>
@@ -43,8 +53,13 @@
   import { ref, watch} from 'vue'
   import EmailInput from '../components/EmailInput.vue'
   import PasswordInput from '../components/PasswordInput.vue'
+  import TextInput from '../components/TextInput.vue'
+
   import { useUserStore } from '../stores/userStore';
   const userStore = useUserStore();
+
+  const firstName = ref('')
+  const lastName = ref('')
 
   const email = ref('')
   const password = ref('')
@@ -97,7 +112,9 @@
         const response = await axios.post('/register', {
           email: email.value,
           password: password.value,
-          password_confirmation: confirmPassword.value
+          password_confirmation: confirmPassword.value,
+          first_name: firstName.value,
+          last_name: lastName.value
         });
         // Redirect to homepage if registration is successful
         if (response.status === 201) {
