@@ -3,6 +3,7 @@ import './bootstrap';
 import { createApp } from "vue";
 import { createPinia } from 'pinia';
 
+
 import Navbar from "./layout/Navbar.vue";
 import Footer from "./layout/Footer.vue";
 

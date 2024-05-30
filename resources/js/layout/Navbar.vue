@@ -18,7 +18,7 @@
         <div>
           <ul class="flex flex-col-reverse space-x-0 lg:space-x-6 lg:flex-row">
             <li class="mt-4 lg:mt-0" v-if="user">
-              <Dropdown>
+              <Dropdown :contentClasses="'py-1 bg-[151126]'">
                 <template #trigger>
                   <a href="#" class="py-3 px-4 text-center border text-gray-300 hover:text-[25B4C4] rounded-md block lg:inline lg:border-0">
                     <img

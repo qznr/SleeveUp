@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('applicants', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('bio')
+            $table->text('bio')
                   ->default("Hi there! I\'m using SleeveUp.");
             $table->enum('status', ['Looking for work', 'Looking for investor', 'Looking for partner'])
                   ->default('Looking for work');

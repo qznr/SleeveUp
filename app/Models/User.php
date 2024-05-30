@@ -23,6 +23,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'skills' => 'array',
     ];
+    
+    protected $appends = ['role'];
 
     public function applicant()
     {

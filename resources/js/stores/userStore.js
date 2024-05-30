@@ -36,6 +36,33 @@ export const useUserStore = defineStore('user', {
     clearUser() {
       this.user = null;
       localStorage.removeItem('user');
+    },
+    async updateUser(userData) {
+      try {
+        if (this.user.role === 'applicant') {
+          // Update both User and Applicant
+
+          const userResponse = await axios.put(`/users/${this.user.id}`, userData.user);
+          const applicantResponse = await axios.put(`/applicants/${this.user.applicant.id}`, userData.applicant);
+
+          // Assuming API responses return the updated user and applicant
+          this.user = userResponse.data;
+          this.user.applicant = applicantResponse.data;
+        } else {
+          // Update only User
+          const response = await axios.put(`/users/${this.user.id}`, userData.user);
+          
+          // Assuming API response returns the updated user
+          this.user = response.data;
+        }
+        console.log('this.user ', this.user)
+        console.log('this.user.applicant', this.user.applicant)
+        this.persistUser();
+        return { success: true, message: 'Update successful' };
+      } catch (error) {
+        console.error('Error updating user data', error);
+        return { success: false, message: 'Update failed' };
+      }
     }
   }
 });

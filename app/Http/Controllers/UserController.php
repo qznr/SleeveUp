@@ -50,6 +50,32 @@ class UserController extends Controller
         return response()->json(['message' => 'User registered successfully'], 201);
     }
 
+    public function update(Request $request, $id)
+    {
+        $validated = $request->validate([
+            'email' => 'sometimes|string|email|max:255|unique:users,email,' . $id,
+            'password' => 'sometimes|string|min:8|confirmed',
+            'name' => 'sometimes|string|max:255',
+            'gender' => 'sometimes|string|in:male,female',
+            'date_of_birth' => 'sometimes|date',
+            'place_of_birth' => 'sometimes|string|max:255',
+            'img' => 'sometimes|string|max:255',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        if (isset($validated['password'])) {
+            $validated['password'] = Hash::make($validated['password']);
+        }
+
+        if ($user) {
+            $user->update($validated);
+            return response()->json($user, 200);
+        } else {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+    }
+
     public function logout(Request $request)
     {
         Auth::logout();
@@ -72,6 +98,7 @@ class UserController extends Controller
         return response()->json(['error' => 'Invalid credentials'], 401);
     }
 
+
     public function checkEmail(Request $request)
     {
         $request->validate([
@@ -87,6 +114,5 @@ class UserController extends Controller
     {
         $user = User::with('applicant')->find(Auth::id());
         return response()->json(['user' => $user]);
-    
     }
 }

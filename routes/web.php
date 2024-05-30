@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ApplicantController;
+
 use App\Http\Controllers\ApplicantExperienceController;
 use App\Http\Controllers\ApplicantCertificateController;
 use App\Http\Controllers\ApplicantProjectController;
@@ -27,6 +29,8 @@ Route::middleware(['auth', 'role:applicant'])->group(function () {
     Route::get('/profile', function () {
         return view('user.profile');
     });
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::put('/applicants/{id}', [ApplicantController::class, 'update']);
 });
 
 Route::apiResource('applicants.experiences', ApplicantExperienceController::class);
