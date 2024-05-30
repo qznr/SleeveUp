@@ -25,9 +25,3 @@ Route::middleware(['auth', 'role:applicant'])->group(function () {
         return view('user.profile');
     });
 });
-
-Route::middleware(['auth', 'role:employer'])->group(function () {
-    Route::get('/employer-test', function () {
-        return view('user.employer-test');
-    });
-});

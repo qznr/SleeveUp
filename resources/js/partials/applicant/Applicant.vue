@@ -6,7 +6,7 @@
       </div>
       <div class="col-span-6 lg:col-span-9">
         <div class="lg:flex justify-between">
-          <h1 class="text-3xl my-4 lg:my-0 text-center lg:text-start">{{ user.first_name }} {{ user.last_name }}</h1>
+          <h1 class="text-3xl my-4 lg:my-0 text-center lg:text-start">{{ user.name}}</h1>
           <div class="flex lg:flex-none lg:gap-x-10 justify-between my-4 lg:my-0">
             <div class="group px-3 py-1 bg-[25B4C4] text-gray-100 rounded-xl inline-flex items-center font-semibold capitalize">
               <p>{{ user.gender }}</p>

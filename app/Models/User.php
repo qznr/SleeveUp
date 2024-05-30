@@ -12,7 +12,7 @@ class User extends Authenticatable
     use HasFactory, Notifiable;
 
     protected $fillable = [
-        'email', 'password', 'first_name', 'last_name', 'gender', 'date_of_birth', 'place_of_birth', 'img',
+        'email', 'password', 'name', 'gender', 'date_of_birth', 'place_of_birth', 'img',
     ];
 
     protected $hidden = [
@@ -31,11 +31,7 @@ class User extends Authenticatable
 
     public function getRoleAttribute()
     {
-        if ($this->admin) {
-            return 'admin';
-        } elseif ($this->employer) {
-            return 'employer';
-        } elseif ($this->applicant) {
+        if ($this->applicant) {
             return 'applicant';
         }
         return 'unknown';
