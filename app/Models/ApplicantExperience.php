@@ -15,7 +15,8 @@ class ApplicantExperience extends Model
         'description',
         'location',
         'role',
-        'timeframe',
+        'start_year',
+        'end_year',
         'skills_and_tools'
     ];
 

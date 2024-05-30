@@ -14,7 +14,10 @@ class ApplicantProject extends Model
         'name',
         'description',
         'type',
-        'timeframe',
+        'start_month',
+        'start_year',
+        'end_month',
+        'end_year',
         'link'
     ];
 

@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ApplicantExperienceController;
+use App\Http\Controllers\ApplicantCertificateController;
+use App\Http\Controllers\ApplicantProjectController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -25,3 +28,7 @@ Route::middleware(['auth', 'role:applicant'])->group(function () {
         return view('user.profile');
     });
 });
+
+Route::apiResource('applicants.experiences', ApplicantExperienceController::class);
+Route::apiResource('applicants.certificates', ApplicantCertificateController::class);
+Route::apiResource('applicants.projects', ApplicantProjectController::class);

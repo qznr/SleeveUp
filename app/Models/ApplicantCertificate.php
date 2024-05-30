@@ -13,7 +13,10 @@ class ApplicantCertificate extends Model
         'applicant_id',
         'name',
         'type',
-        'timeframe',
+        'start_month',
+        'start_year',
+        'end_month',
+        'end_year',
         'skills',
         'tools',
         'link'

@@ -35,4 +35,21 @@ class Applicant extends Model
     {
         return $this->hasMany(ApplicantProject::class);
     }
+
+    public function getExperiencesListAttribute()
+    {
+        return $this->experiences()->get();
+    }
+
+    // Accessor for certificates
+    public function getCertificatesListAttribute()
+    {
+        return $this->certificates()->get();
+    }
+
+    // Accessor for projects
+    public function getProjectsListAttribute()
+    {
+        return $this->projects()->get();
+    }
 }
