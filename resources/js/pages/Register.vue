@@ -14,22 +14,22 @@
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
           <form class="space-y-4 md:space-y-6" @submit.prevent="handleSubmit">
             <div>
-                <label for="first-name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
-                <TextInput name="first-name" id="first-name" v-model="name" required> </TextInput>
+              <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Name</label>
+              <TextInput name="name" id="name" v-model="name" placeholder="Enter your name" required> </TextInput>
             </div>
             <div>
               <label for="email" class="block mb-2 text-sm font-medium text-gray-900">Your email</label>
-              <EmailInput name="email" id="email" v-model="email"></EmailInput>
+              <EmailInput name="email" id="email" v-model="email" placeholder="Enter your email"></EmailInput>
               <p v-if="emailError" class="text-sm text-red-600">{{ emailError }}</p>
             </div>
             <div>
               <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Password</label>
-              <PasswordInput type="password" name="password" id="password" v-model="password"></PasswordInput>
+              <PasswordInput type="password" name="password" id="password" v-model="password" placeholder="Enter your password"></PasswordInput>
               <p v-if="passwordError" class="text-sm text-red-600">{{ passwordError }}</p>
             </div>
             <div>
               <label for="confirm-password" class="block mb-2 text-sm font-medium text-gray-900">Confirm password</label>
-              <PasswordInput type="confirm-password" name="confirm-password" id="confirm-password" v-model="confirmPassword"></PasswordInput>
+              <PasswordInput type="confirm-password" name="confirm-password" id="confirm-password" v-model="confirmPassword" placeholder="Confirm your password"></PasswordInput>
               <p v-if="confirmPasswordError" class="text-sm text-red-600">{{ confirmPasswordError }}</p>
             </div>
             <button type="submit" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Create an account</button>
@@ -53,7 +53,6 @@
   const userStore = useUserStore();
 
   const name = ref('')
-  const lastName = ref('')
 
   const email = ref('')
   const password = ref('')

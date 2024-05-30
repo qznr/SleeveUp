@@ -46,9 +46,8 @@
       </button>
       <input
         :type="isPasswordHidden ? 'password' : 'text'"
-        :value="modelValue"
-        @input="$emit('update:modelValue', $event.target.value)"
-        placeholder="Enter your password"
+        v-model="modelValue"
+        :placeholder="placeholder"
         class="w-full pr-12 pl-3 py-2 text-gray-500 bg-transparent outline-none border focus:border-indigo-600 shadow-sm rounded-lg"
         required
       />
@@ -57,15 +56,24 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref } from 'vue';
+import { defineModel } from 'vue';
+
+const modelValue = defineModel({
+  type: String,
+  required: true,
+});
 
 const props = defineProps({
-  modelValue: String
-})
+  placeholder: {
+    type: String,
+    default: 'Enter your password'
+  }
+});
 
-const isPasswordHidden = ref(true)
+const isPasswordHidden = ref(true);
 
 const togglePasswordVisibility = () => {
-  isPasswordHidden.value = !isPasswordHidden.value
-}
+  isPasswordHidden.value = !isPasswordHidden.value;
+};
 </script>
