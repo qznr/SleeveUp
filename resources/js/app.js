@@ -1,6 +1,7 @@
 import './bootstrap';
 
 import { createApp } from "vue";
+import { createPinia } from 'pinia';
 
 import Navbar from "./layout/Navbar.vue";
 import Footer from "./layout/Footer.vue";
@@ -17,7 +18,6 @@ import Contact from "./partials/Contact.vue";
 
 const app = createApp({});
 
-
 app.component("v-footer", Footer);
 app.component("navbar", Navbar);
 
@@ -30,5 +30,10 @@ app.component("logogrid", LogoGrid);
 app.component("features", FeaturesSection);
 app.component("steps", Steps);
 app.component("contact", Contact);
+
+const pinia = createPinia();
+
+app.use(pinia);
+app.config.globalProperties.$axios = axios;
 
 app.mount("#app");
