@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('job_offers', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('profession_id')->constrained('professions')->onDelete('cascade');
+            $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
+            $table->string('description');
+            $table->string('salary');
+            $table->string('requirement');
+            $table->string('is_remote');
+            $table->string('type');
             $table->timestamps();
         });
     }

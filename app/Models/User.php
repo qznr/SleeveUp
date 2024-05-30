@@ -29,16 +29,6 @@ class User extends Authenticatable
         return $this->hasOne(Applicant::class);
     }
 
-    public function employer()
-    {
-        return $this->hasOne(Employer::class);
-    }
-
-    public function admin()
-    {
-        return $this->hasOne(Admin::class);
-    }
-
     public function getRoleAttribute()
     {
         if ($this->admin) {

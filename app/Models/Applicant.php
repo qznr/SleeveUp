@@ -8,7 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Applicant extends Model
 {
     use HasFactory;
-    protected $fillable = ['user_id', 'education_level', 'description'];
+    protected $fillable = [
+        'user_id',
+        'bio', 
+        'status',
+        'about_me', 
+        'description'
+    ];
 
     public function user()
     {

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('applicant_certificates', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('applicant_id')->constrained('applicants')->onDelete('cascade');
             $table->string('name');
             $table->string('type');
             $table->string('start_month');
