@@ -2,7 +2,6 @@
 
 <ul>
     <li>Node.js</li>
-    <li>PHP</li>
     <li>Composer</li>
 </ul>
 
