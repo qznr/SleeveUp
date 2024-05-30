@@ -1,8 +1,6 @@
 ## Prerequisites
 
 <ul>
-    <li>Apache server</li>
-    <li>MySQL server</li>
     <li>Node.js</li>
     <li>PHP</li>
     <li>Composer</li>
