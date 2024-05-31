@@ -24,7 +24,7 @@ class ApplicantExperienceController extends Controller
             'role' => 'required|string',
             'start_year' => 'required|integer',
             'end_year' => 'required|integer',
-            'skills_and_tools' => 'required|string',
+            'skills_and_tools' => 'sometimes|string',
         ]);
 
         $experience = new ApplicantExperience($validated);
@@ -50,7 +50,7 @@ class ApplicantExperienceController extends Controller
             'role' => 'required|string',
             'start_year' => 'required|integer',
             'end_year' => 'required|integer',
-            'skills_and_tools' => 'required|string',
+            'skills_and_tools' => 'sometimes|string',
         ]);
 
         $experience->update($validated);

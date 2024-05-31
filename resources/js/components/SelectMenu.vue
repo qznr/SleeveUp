@@ -10,6 +10,10 @@ const props = defineProps({
         type: String,
         default: '',
     },
+    placeholder: {
+        type: String,
+        default: '',
+    },
     fieldClasses: {
         type: String,
         default: '',
@@ -68,7 +72,7 @@ selectedLabel.value = props.options.find(option => option.value === props.modelV
             :class="[fieldClasses, 'flex justify-between w-full px-3 py-2 text-gray-500 bg-transparent border focus:border-indigo-600 shadow-sm rounded-lg cursor-pointer']"
             @click="toggleDropdown"
         >
-            {{ selectedLabel || 'Select an option' }}
+            <p>{{ selectedLabel || placeholder }}</p>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 15 12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9" />
             </svg>

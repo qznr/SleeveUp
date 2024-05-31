@@ -55,8 +55,6 @@ export const useUserStore = defineStore('user', {
           // Assuming API response returns the updated user
           this.user = response.data;
         }
-        console.log('this.user ', this.user)
-        console.log('this.user.applicant', this.user.applicant)
         this.persistUser();
         return { success: true, message: 'Update successful' };
       } catch (error) {

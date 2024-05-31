@@ -26,7 +26,7 @@ class ApplicantProjectController extends Controller
             'start_year' => 'required|integer',
             'end_month' => 'required|integer',
             'end_year' => 'required|integer',
-            'link' => 'required|url',
+            'link' => 'sometimes|url',
         ]);
 
         $project = new ApplicantProject($validated);
@@ -53,7 +53,7 @@ class ApplicantProjectController extends Controller
             'start_year' => 'required|integer',
             'end_month' => 'required|integer',
             'end_year' => 'required|integer',
-            'link' => 'required|url',
+            'link' => 'sometimes|url',
         ]);
 
         $project->update($validated);

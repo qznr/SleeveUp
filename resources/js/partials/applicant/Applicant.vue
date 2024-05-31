@@ -1,5 +1,4 @@
 <template>
-  
   <div class="bg-white max-w-screen-xl mx-auto p-8 rounded-xl shadow-xl relative">
     <div class="grid grid-cols-12 gap-x-8">
       <div class="col-span-12 lg:col-span-2 lg:w-32 lg:h-32 w-52 h-52 mx-auto rounded-full">
@@ -48,7 +47,7 @@
     
     <Modal :show="showModal" @close="showModal = false">
       <template v-slot>
-        <div class="p-4">
+        <div class="px-12 py-6">
           <h2 class="text-2xl mb-4 text-[381D4F]">Ubah Profil</h2>
           <form @submit.prevent="updateApplicant">
             <div class="mb-4">
@@ -68,7 +67,7 @@
               <SelectMenu id="status" class="mt-1 block w-full" v-model="form.status" :options="statusOptions" ></SelectMenu>
             </div>
             <div class="flex justify-end">
-              <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded-md">Save</button>
+              <button type="submit" class="px-4 py-2 bg-[5742F5] text-white rounded-md">Save</button>
             </div>
           </form>
         </div>
@@ -89,7 +88,7 @@ import SelectMenu from '../../components/SelectMenu.vue'
 
 const userStore = useUserStore();
 const user = ref(userStore.user);
-console.log(user)
+// console.log(user)
 
 watch(() => userStore.user, (newUser) => {
   user.value = newUser;
@@ -140,12 +139,5 @@ const updateApplicant = async () => {
     alert('An error occurred while updating the profile');
   }
 };
-
-watch(user, (newValue) => {
-  form.value.name = newValue.name;
-  form.value.gender = newValue.gender;
-  form.value.bio = newValue.applicant.bio;
-  form.value.status = newValue.applicant.status;
-}, { deep: true });
 
 </script>
