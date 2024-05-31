@@ -48,7 +48,6 @@ export const useUserStore = defineStore('user', {
           // Assuming API responses return the updated user and applicant
           this.user = userResponse.data;
           this.user.applicant = applicantResponse.data;
-          console.log(this.user.applicant)
         } else {
           // Update only User
           const response = await axios.put(`/users/${this.user.id}`, userData.user);
@@ -86,6 +85,21 @@ export const useUserStore = defineStore('user', {
       } catch (error) {
         console.error('Error updating experience', error);
         return { success: false, message: 'Failed to update experience' };
+      }
+    },
+    async deleteExperience(experienceId) {
+      try {
+        const response = await axios.delete(`/applicants/${this.user.applicant.id}/experiences/${experienceId}`);
+        if (response.status === 200) {
+          this.user.applicant.experiences = this.user.applicant.experiences.filter(exp => exp.id !== experienceId);
+          this.persistUser();
+          return { success: true, message: 'Experience deleted successfully' };
+        } else {
+          return { success: false, message: 'Failed to delete experience' };
+        }
+      } catch (error) {
+        console.error('Error deleting experience', error);
+        return { success: false, message: 'Failed to delete experience' };
       }
     },
     async addCertificate(certificateData) {

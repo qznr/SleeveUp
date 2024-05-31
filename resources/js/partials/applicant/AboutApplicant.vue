@@ -9,7 +9,7 @@
         </svg>
       </button>
     </div>
-    <p class="text-wrap break-words whitespace-pre-wrap"> {{user.applicant.about_me}} </p>
+    <p class="text-wrap break-words whitespace-pre-wrap text-[381D4F]"> {{user.applicant.about_me}} </p>
   </div>
 
   <Modal :show="showModal" @close="showModal = false">

@@ -62,7 +62,12 @@ class UserController extends Controller
             'img' => 'sometimes|string|max:255',
         ]);
 
-        $user = User::findOrFail($id);
+        $user = User::with([
+            'applicant',
+            'applicant.experiences',
+            'applicant.certificates',
+            'applicant.projects'
+        ])->findOrFail($id);
 
         if (isset($validated['password'])) {
             $validated['password'] = Hash::make($validated['password']);

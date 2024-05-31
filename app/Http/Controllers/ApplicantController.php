@@ -51,7 +51,11 @@ class ApplicantController extends Controller
             'description' => 'sometimes|string',
         ]);
 
-        $applicant = Applicant::find($id);
+        $applicant = Applicant::with([
+            'experiences',
+            'certificates',
+            'projects'
+        ])->find($id);
 
         if ($applicant) {
             $applicant->update($validated);

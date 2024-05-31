@@ -12,62 +12,63 @@
 
     <!-- Experiences -->
     <div v-if="user.applicant.experiences">
-      <div class="flex py-4 border-t border-gray-400">
+      <div v-for="(experience, index) in displayedExperiences" :key="index" class="flex py-4 border-t border-gray-400">
         <div class="text-[381D4F] px-8">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor" class="size-8">
             <path d="M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm240-600h160v-80H400v80Z"/>
           </svg>
         </div>
         <div class="justify-between w-full">
-          <h2 class="text-[381D4F] text-xl font-semibold"> {{ user.applicant.experiences[0].name }}</h2>
+          <h2 class="text-[381D4F] text-xl font-semibold"> {{ experience.name }}</h2>
           <div class="flex py-2 max-w-sm justify-between items-center">
             <div class="flex">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 mr-2 text-[FF8AAF]">
                 <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
               </svg>
-              <span>{{ user.applicant.experiences[0].location }}</span>
+              <span>{{ experience.location }}</span>
             </div>
             <div class="group px-3 py-1 bg-[25B4C4] text-gray-100 rounded-2xl inline-flex items-center font-semibold capitalize">
-              <p>{{ user.applicant.experiences[0].role }}</p>
+              <p>{{ experience.role }}</p>
             </div>
           </div>
-          <h2 class="text-[381D4F] text-base font-semibold py-2"> {{ user.applicant.experiences[0].start_year }} - {{ user.applicant.experiences[0].end_year }}</h2>
-          <p class="text-[381D4F] text-wrap break-words whitespace-pre-wrap py-2">{{ user.applicant.experiences[0].description }}</p>
+          <h2 class="text-[381D4F] text-base font-semibold py-2"> {{ experience.start_year }} - {{ experience.end_year }}</h2>
+          <p class="text-[381D4F] text-wrap break-words whitespace-pre-wrap py-2">{{ experience.description }}</p>
           <div class="flex mb-2">
             <p class="text-[381D4F] font-semibold mr-1">Skills and Tools:</p>
-            <p class="text-[381D4F] text-wrap break-words whitespace-pre-wrap"> {{ user.applicant.experiences[0].skills_and_tools }}</p>
+            <p class="text-[381D4F] text-wrap break-words whitespace-pre-wrap"> {{ experience.skills_and_tools }}</p>
           </div>
         </div>
 
         <!-- Buttons -->
         <div class="flex flex-col">
-          <button class="col-span-12 lg:col-span-1 flex justify-end text-[5742F5]" @click="showEditModal = true">
+          <button class="col-span-12 lg:col-span-1 flex justify-end text-[5742F5]" @click="openEditModal(experience)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
               <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
               <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
             </svg>
           </button>
-          <button class="mt-3 col-span-12 lg:col-span-1 flex justify-end text-[5742F5]" @click="showEditModal = true">
+          <button class="mt-3 col-span-12 lg:col-span-1 flex justify-end text-[5742F5]" @click="confirmDelete(experience)">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
               <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
             </svg>
           </button>
         </div>
       </div>
-      <div class="flex border-t border-gray-400 justify-center pt-8">
-        <button class="group px-3 py-1 bg-[5742F5] text-gray-100 rounded-md inline-flex items-center font-semibold capitalize">
+      <div class="flex border-t border-gray-400 justify-center pt-8" v-if="showMoreButton">
+        <button @click="showMoreExperiences" class="group px-3 py-1 bg-[#5742F5] text-gray-100 rounded-md inline-flex items-center font-semibold capitalize">
           <p class='pr-1'>Lihat Selengkapnya</p>
         </button>
       </div>
     </div>
 
-    <div class="flex justify-center p-16" v-if="!user.applicant.experiences">
+    <div class="flex justify-center p-16" v-if="!user.applicant.experiences[0]">
       Pengalaman kamu masih kosong, segera diisi yuk!
     </div>
 
-
   </div>
 
+
+  <!-- Add Modal -->
   <Modal :show="showAddModal" @close="showAddModal = false" :maxWidth="'5xl'">
     <template v-slot>
       <div class="px-12 py-6">
@@ -84,10 +85,8 @@
           <div class="mb-4">
             <label for="startYear" class="block text-sm font-medium text-[381D4F]">Lama Jenjang Karir</label>
             <div class="flex gap-x-12">
-              <TextInput id="startYear" v-model="addForm.start_year" type="number" class="mt-1 block w-36" :placeholder="'Tahun Mulai'" required></TextInput>
-
-              <TextInput id="endYear" v-model="addForm.end_year" type="number" class="mt-1 block w-36" :placeholder="'Tahun Selesai'"> required</TextInput>
-
+              <TextInput id="startYear" v-model="addForm.start_year" type="text" class="mt-1 block w-36" :placeholder="'Tahun Mulai'" required></TextInput>
+              <TextInput id="endYear" v-model="addForm.end_year" type="text" class="mt-1 block w-36" :placeholder="'Tahun Selesai'"> required</TextInput>
             </div>
           </div>
           <div class="mb-4">
@@ -109,10 +108,52 @@
       </div>
     </template>
   </Modal>
+
+  <!-- Edit Modal -->
+  <Modal :show="showEditModal" @close="showEditModal = false" :maxWidth="'5xl'">
+    <template v-slot>
+      <div class="px-12 py-6">
+        <h2 class="text-2xl mb-3 text-[381D4F]">TULISKAN PENGALAMANMU</h2>
+        <form @submit.prevent="editApplicantExperience">
+          <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-[381D4F]">Pengalaman</label>
+            <TextInput id="name" v-model="editForm.name" type="text" class="mt-1 block w-full" :placeholder="'Anda pernah Bekerja sebagai apa? Di perusahaan mana? (Ex: Intern di PT Mencari Cinta Sejati)'" required></TextInput>
+          </div>
+          <div class="mb-4">
+            <label for="location" class="block text-sm font-medium text-[381D4F]">Lokasi</label>
+            <TextInput id="location" v-model="editForm.location" type="text" class="mt-1 block w-full" :placeholder="'Dimana lokasi perusahaan anda? (Ex: Malang, Jawa Timur)'" required></TextInput>
+          </div>
+          <div class="mb-4">
+            <label for="startYear" class="block text-sm font-medium text-[381D4F]">Lama Jenjang Karir</label>
+            <div class="flex gap-x-12">
+              <TextInput id="startYear" v-model="editForm.start_year" type="text" class="mt-1 block w-36" :placeholder="'Tahun Mulai'" required></TextInput>
+              <TextInput id="endYear" v-model="editForm.end_year" type="text" class="mt-1 block w-36" :placeholder="'Tahun Selesai'"> required</TextInput>
+            </div>
+          </div>
+          <div class="mb-4">
+            <label for="role" class="block text-sm font-medium text-[381D4F]">Pilih Profesi</label>
+            <SelectMenu id="role" class="mt-1 block w-full" v-model="editForm.role" :options="roleOptions" :dropdownClasses="'overflow-y-auto max-h-36'" placeholder="Pilih salah satu profesi" required></SelectMenu>
+          </div>
+          <div class="mb-4">
+            <label for="description" class="block text-sm font-medium text-[381D4F]">Deskripsi Pengalaman</label>
+            <TextArea id="description" v-model="editForm.description" class="mt-2 block w-full" :rows="3" :placeholder="'Jelaskan pengalaman yang anda miliki secara singkat'" required></TextArea>
+          </div>
+          <div class="mb-4">
+            <label for="skillsAndTools" class="block text-sm font-medium text-[381D4F]">Skills dan Tools</label>
+            <TextInput id="skillsAndTools" v-model="editForm.skills_and_tools" type="text" class="mt-1 block w-full" :placeholder="'Sebutkan jenis pengalaman dan alat yang kamu miliki (Ex: Leadership, Time Management, Excel, Microsoft Word, etc)'"></TextInput>
+          </div>
+          <div class="flex justify-end">
+            <button type="submit" class="px-4 py-2 bg-[5742F5] text-white rounded-md">Simpan</button>
+          </div>
+        </form>
+      </div>
+    </template>
+  </Modal>
+
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed } from 'vue';
 import { useUserStore } from '../../stores/userStore';
 import Modal from '../../components/Modal.vue';
 import TextArea from '../../components/TextArea.vue'
@@ -121,6 +162,7 @@ import SelectMenu from '../../components/SelectMenu.vue'
 
 const userStore = useUserStore();
 const user = ref(userStore.user);
+
 
 const roleOptions = ref([
   { value: 'Data Scientist', label: 'Data Scientist' },
@@ -136,6 +178,8 @@ watch(() => userStore.user, (newUser) => {
 });
 
 const showAddModal = ref(false);
+const showEditModal = ref(false);
+const showAllExperiences = ref(false);
 
 const addForm = ref({
   name: '',
@@ -147,6 +191,37 @@ const addForm = ref({
   skills_and_tools: '',
 });
 
+const editForm = ref({
+  name: '',
+  location: '',
+  start_year: '',
+  end_year: '',
+  role: '',
+  description: '',
+  skills_and_tools: '',
+});
+
+const showMoreButton = computed(() => {
+  return user.value.applicant.experiences.length > 1 && !showAllExperiences.value;
+});
+
+const displayedExperiences = computed(() => {
+  if (showAllExperiences.value) {
+    return user.value.applicant.experiences;
+  }
+  return user.value.applicant.experiences.slice(0, 1);
+});
+
+const showMoreExperiences = () => {
+  showAllExperiences.value = !showAllExperiences.value;
+};
+
+const openEditModal = (experience) => {
+  editForm.value = { ...experience };
+  showEditModal.value = true;
+};
+
+// Methods
 const addApplicantExperience = async () => {
   try {
     const response = await userStore.addExperience(addForm.value);
@@ -167,6 +242,20 @@ const addApplicantExperience = async () => {
   } catch (error) {
     console.error('Error adding applicant experience', error);
     alert('Failed to add experience. Please try again.');
+  }
+};
+
+const editApplicantExperience = async () => {
+  try {
+    const response = await userStore.updateExperience(editForm.value.id ,editForm.value);
+    if (response.success) {
+      showEditModal.value = false;
+    } else {
+      alert(response.message);
+    }
+  } catch (error) {
+    console.error('Error updating applicant experience', error);
+    alert('Failed to update experience. Please try again.');
   }
 };
 </script>
