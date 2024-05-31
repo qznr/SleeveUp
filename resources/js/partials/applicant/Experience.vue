@@ -12,51 +12,51 @@
 
     <!-- Experiences -->
     <div v-if="user.applicant.experiences">
-      <div v-for="(experience, index) in displayedExperiences" :key="index" class="flex py-4 border-t border-gray-400">
-        <div class="text-[381D4F] px-8">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor" class="size-8">
-            <path d="M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm240-600h160v-80H400v80Z"/>
-          </svg>
-        </div>
-        <div class="justify-between w-full">
-          <h2 class="text-[381D4F] text-xl font-semibold"> {{ experience.name }}</h2>
-          <div class="flex py-2 max-w-sm justify-between items-center">
-            <div class="flex">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 mr-2 text-[FF8AAF]">
-                <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
-              </svg>
-              <span>{{ experience.location }}</span>
+        <div v-for="(experience, index) in displayedExperiences" :key="index" class="flex py-4 border-t border-gray-400">
+          <div class="text-[381D4F] px-8">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="currentColor" class="size-8">
+              <path d="M160-120q-33 0-56.5-23.5T80-200v-440q0-33 23.5-56.5T160-720h160v-80q0-33 23.5-56.5T400-880h160q33 0 56.5 23.5T640-800v80h160q33 0 56.5 23.5T880-640v440q0 33-23.5 56.5T800-120H160Zm240-600h160v-80H400v80Z"/>
+            </svg>
+          </div>
+          <div class="justify-between w-full">
+            <h2 class="text-[381D4F] text-xl font-semibold"> {{ experience.name }}</h2>
+            <div class="flex py-2 max-w-sm justify-between items-center">
+              <div class="flex">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 mr-2 text-[FF8AAF]">
+                  <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
+                </svg>
+                <span>{{ experience.location }}</span>
+              </div>
+              <div class="group px-3 py-1 bg-[25B4C4] text-gray-100 rounded-2xl inline-flex items-center font-semibold capitalize">
+                <p>{{ experience.role }}</p>
+              </div>
             </div>
-            <div class="group px-3 py-1 bg-[25B4C4] text-gray-100 rounded-2xl inline-flex items-center font-semibold capitalize">
-              <p>{{ experience.role }}</p>
+            <h2 class="text-[381D4F] text-base font-semibold py-2"> {{ experience.start_year }} - {{ experience.end_year }}</h2>
+            <p class="text-[381D4F] text-wrap break-words whitespace-pre-wrap py-2">{{ experience.description }}</p>
+            <div class="flex mb-2">
+              <p class="text-[381D4F] font-semibold mr-1">Skills and Tools:</p>
+              <p class="text-[381D4F] text-wrap break-words whitespace-pre-wrap"> {{ experience.skills_and_tools }}</p>
             </div>
           </div>
-          <h2 class="text-[381D4F] text-base font-semibold py-2"> {{ experience.start_year }} - {{ experience.end_year }}</h2>
-          <p class="text-[381D4F] text-wrap break-words whitespace-pre-wrap py-2">{{ experience.description }}</p>
-          <div class="flex mb-2">
-            <p class="text-[381D4F] font-semibold mr-1">Skills and Tools:</p>
-            <p class="text-[381D4F] text-wrap break-words whitespace-pre-wrap"> {{ experience.skills_and_tools }}</p>
-          </div>
-        </div>
 
-        <!-- Buttons -->
-        <div class="flex flex-col">
-          <button class="col-span-12 lg:col-span-1 flex justify-end text-[5742F5]" @click="openEditModal(experience)">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-              <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
-              <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
-            </svg>
-          </button>
-          <button class="mt-3 col-span-12 lg:col-span-1 flex justify-end text-[5742F5]" @click="confirmDelete(experience)">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-              <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
-            </svg>
-          </button>
+          <!-- Buttons -->
+          <div class="flex flex-col">
+            <button class="col-span-12 lg:col-span-1 flex justify-end text-[5742F5]" @click="openEditModal(experience)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <path d="M21.731 2.269a2.625 2.625 0 0 0-3.712 0l-1.157 1.157 3.712 3.712 1.157-1.157a2.625 2.625 0 0 0 0-3.712ZM19.513 8.199l-3.712-3.712-8.4 8.4a5.25 5.25 0 0 0-1.32 2.214l-.8 2.685a.75.75 0 0 0 .933.933l2.685-.8a5.25 5.25 0 0 0 2.214-1.32l8.4-8.4Z" />
+                <path d="M5.25 5.25a3 3 0 0 0-3 3v10.5a3 3 0 0 0 3 3h10.5a3 3 0 0 0 3-3V13.5a.75.75 0 0 0-1.5 0v5.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5V8.25a1.5 1.5 0 0 1 1.5-1.5h5.25a.75.75 0 0 0 0-1.5H5.25Z" />
+              </svg>
+            </button>
+            <button class="mt-3 col-span-12 lg:col-span-1 flex justify-end text-[5742F5]" @click="confirmDelete(experience)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 0 1 3.878.512.75.75 0 1 1-.256 1.478l-.209-.035-1.005 13.07a3 3 0 0 1-2.991 2.77H8.084a3 3 0 0 1-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 0 1-.256-1.478A48.567 48.567 0 0 1 7.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 0 1 3.369 0c1.603.051 2.815 1.387 2.815 2.951Zm-6.136-1.452a51.196 51.196 0 0 1 3.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 0 0-6 0v-.113c0-.794.609-1.428 1.364-1.452Zm-.355 5.945a.75.75 0 1 0-1.5.058l.347 9a.75.75 0 1 0 1.499-.058l-.346-9Zm5.48.058a.75.75 0 1 0-1.498-.058l-.347 9a.75.75 0 0 0 1.5.058l.345-9Z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="flex border-t border-gray-400 justify-center pt-8" v-if="showMoreButton">
-        <button @click="showMoreExperiences" class="group px-3 py-1 bg-[#5742F5] text-gray-100 rounded-md inline-flex items-center font-semibold capitalize">
-          <p class='pr-1'>Lihat Selengkapnya</p>
+      <div class="flex border-t border-gray-400 justify-center pt-8" v-if="experienceCount > 1">
+        <button @click="toggleShowMore" class="group px-3 py-1 bg-[#5742F5] text-gray-100 rounded-md inline-flex items-center font-semibold capitalize">
+          <p class='pr-1'>{{ showAllExperiences ? 'Tampilkan Lebih Sedikit' : 'Lihat Selengkapnya' }}</p>
         </button>
       </div>
     </div>
@@ -150,6 +150,19 @@
     </template>
   </Modal>
 
+
+  <Modal :show="showDeleteModal" @close="showDeleteModal = false" :maxWidth="'lg'">
+    <template v-slot>
+      <div class="px-12 py-6">
+        <h2 class="text-2xl mb-3 text-[#381D4F]">Hapus Pengalaman</h2>
+        <p>Apakah Anda yakin ingin menghapus pengalaman ini?</p>
+        <div class="flex justify-end mt-4">
+          <button @click="showDeleteModal = false" class="px-4 py-2 bg-gray-300 text-black rounded-md mr-2">Batal</button>
+          <button @click="deleteApplicantExperience" class="px-4 py-2 bg-[#5742F5] text-white rounded-md">Hapus</button>
+        </div>
+      </div>
+    </template>
+  </Modal>
 </template>
 
 <script setup>
@@ -162,7 +175,6 @@ import SelectMenu from '../../components/SelectMenu.vue'
 
 const userStore = useUserStore();
 const user = ref(userStore.user);
-
 
 const roleOptions = ref([
   { value: 'Data Scientist', label: 'Data Scientist' },
@@ -180,6 +192,7 @@ watch(() => userStore.user, (newUser) => {
 const showAddModal = ref(false);
 const showEditModal = ref(false);
 const showAllExperiences = ref(false);
+const showDeleteModal = ref(false);
 
 const addForm = ref({
   name: '',
@@ -201,9 +214,7 @@ const editForm = ref({
   skills_and_tools: '',
 });
 
-const showMoreButton = computed(() => {
-  return user.value.applicant.experiences.length > 1 && !showAllExperiences.value;
-});
+const experienceCount = computed(() => user.value.applicant.experiences.length);
 
 const displayedExperiences = computed(() => {
   if (showAllExperiences.value) {
@@ -212,7 +223,14 @@ const displayedExperiences = computed(() => {
   return user.value.applicant.experiences.slice(0, 1);
 });
 
-const showMoreExperiences = () => {
+const experienceToDelete = ref(null);
+
+const confirmDelete = (experience) => {
+  experienceToDelete.value = experience;
+  showDeleteModal.value = true;
+};
+
+const toggleShowMore = () => {
   showAllExperiences.value = !showAllExperiences.value;
 };
 
@@ -256,6 +274,21 @@ const editApplicantExperience = async () => {
   } catch (error) {
     console.error('Error updating applicant experience', error);
     alert('Failed to update experience. Please try again.');
+  }
+};
+
+const deleteApplicantExperience = async () => {
+  try {
+    const response = await userStore.deleteExperience(experienceToDelete.value.id);
+    if (response.success) {
+      showDeleteModal.value = false;
+      experienceToDelete.value = null;
+    } else {
+      alert(response.message);
+    }
+  } catch (error) {
+    console.error('Error deleting applicant experience', error);
+    alert('Failed to delete experience. Please try again.');
   }
 };
 </script>
