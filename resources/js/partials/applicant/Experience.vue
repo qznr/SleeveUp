@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white max-w-screen-xl mx-auto p-8 rounded-xl shadow-xl relative">
+  <div class="bg-white max-w-screen-xl mx-auto p-8 rounded-xl shadow-xl relative mb-6" id="#experience">
     <div class="flex mb-3 items-center justify-between">
       <h1 class="text-3xl text-[381D4F] font-semibold">Pengalaman</h1>
       <button class="col-span-12 lg:col-span-1 flex text-[5742F5]" @click="showAddModal = true">
@@ -157,7 +157,6 @@
         <h2 class="text-2xl mb-3 text-[#381D4F]">Hapus Pengalaman</h2>
         <p>Apakah Anda yakin ingin menghapus pengalaman ini?</p>
         <div class="flex justify-end mt-4">
-          <button @click="showDeleteModal = false" class="px-4 py-2 bg-gray-300 text-black rounded-md mr-2">Batal</button>
           <button @click="deleteApplicantExperience" class="px-4 py-2 bg-[#5742F5] text-white rounded-md">Hapus</button>
         </div>
       </div>
