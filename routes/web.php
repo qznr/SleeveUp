@@ -16,15 +16,15 @@ Route::get('/', function () {
 });
 
 Route::get('/explore-jobs', function () {
-    return view('homepage');
+    return view('jobs');
 });
 
 Route::get('/explore-companies', function () {
-    return view('homepage');
+    return view('companies');
 });
 
 Route::get('/explore-events', function () {
-    return view('homepage');
+    return view('events');
 });
 
 
