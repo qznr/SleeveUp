@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white max-w-screen-xl mx-auto p-8 rounded-xl shadow-xl relative mb-6" id="#project">
+  <div class="bg-white max-w-screen-xl mx-auto p-8 rounded-xl shadow-xl relative" id="#project">
     <div class="flex mb-3 items-center justify-between">
       <h1 class="text-3xl text-[381D4F] font-semibold">Pelatihan & Sertifikasi</h1>
       <button class="col-span-12 lg:col-span-1 flex text-[5742F5]" @click="showAddModal = true">
@@ -35,8 +35,15 @@
                 <p>{{ project.start_month }} {{ project.start_year }} - {{ project.end_month }} {{ project.end_year }}</p>
               </div>
             </div>
-            <p class="text-[381D4F] text-wrap break-words whitespace-pre-wrap py-2">{{ project.description }}</p>
-
+            <p class="text-[381D4F] text-wrap break-words whitespace-pre-wrap py-2 mb-2">{{ project.description }}</p>
+            <a :href="project.link">
+              <div class="flex text-[5742F5] gap-x-2">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                  <path fill-rule="evenodd" d="M15.75 2.25H21a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-1.5 0V4.81L8.03 17.03a.75.75 0 0 1-1.06-1.06L19.19 3.75h-3.44a.75.75 0 0 1 0-1.5Zm-10.5 4.5a1.5 1.5 0 0 0-1.5 1.5v10.5a1.5 1.5 0 0 0 1.5 1.5h10.5a1.5 1.5 0 0 0 1.5-1.5V10.5a.75.75 0 0 1 1.5 0v8.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V8.25a3 3 0 0 1 3-3h8.25a.75.75 0 0 1 0 1.5H5.25Z" clip-rule="evenodd" />
+                </svg>
+                <p class="font-light">Link Project</p>
+              </div>
+            </a>
           </div>
 
           <!-- Buttons -->

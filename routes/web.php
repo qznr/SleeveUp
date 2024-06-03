@@ -31,6 +31,10 @@ Route::middleware(['auth', 'role:applicant'])->group(function () {
     });
     Route::put('/users/{id}', [UserController::class, 'update']);
     Route::put('/applicants/{id}', [ApplicantController::class, 'update']);
+    Route::post('/users/{id}/profile-image', [UserController::class, 'updateProfileImage']);
+    Route::post('/upload-test', [UserController::class, 'uploadTest']);
+
+
 });
 
 Route::apiResource('applicants.experiences', ApplicantExperienceController::class);

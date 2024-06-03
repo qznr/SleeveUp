@@ -62,6 +62,21 @@ export const useUserStore = defineStore('user', {
         return { success: false, message: 'Update failed' };
       }
     },
+    async updateProfileImage(formData) {
+      try {
+          const response = await axios.post(`/users/${this.user.id}/profile-image`, formData, {
+              headers: {
+                  'Content-Type': 'multipart/form-data'
+              }
+          });
+          this.user.img = response.data.img;
+          this.persistUser();
+          return { success: true, message: 'Image upload successful' };
+      } catch (error) {
+          console.error('Error uploading image', error);
+          return { success: false, message: 'Image upload failed' };
+      }
+    },
     async addExperience(experienceData) {
       try {
         console.log('experienceData ', experienceData)

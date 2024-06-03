@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
 {
@@ -80,6 +81,50 @@ class UserController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
     }
+
+    public function uploadTest(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        if ($request->hasFile('file')) {
+            $filePath = $request->file('file')->store('public/test_uploads');
+            $fileUrl = Storage::url($filePath);
+
+            return response()->json(['file_url' => $fileUrl], 200);
+        }
+
+        return response()->json(['message' => 'File upload failed'], 400);
+    }
+
+
+    public function updateProfileImage(Request $request, $id)
+    {
+        try {
+            $request->validate([
+                'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
+    
+            $user = User::findOrFail($id);
+    
+            if ($request->hasFile('img')) {
+                // Handle image upload
+                $imagePath = $request->file('img')->store('public/img/user');
+                $user->img = Storage::url($imagePath);
+                $user->save();
+    
+                return response()->json($user, 200);
+            }
+    
+            return response()->json(['message' => 'Image upload failed'], 400);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json(['errors' => $e->errors()], 422);
+        } catch (\Exception $e) {
+            return response()->json(['message' => $e->getMessage()], 500);
+        }
+    }
+    
 
     public function logout(Request $request)
     {

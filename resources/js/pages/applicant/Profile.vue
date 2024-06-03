@@ -5,7 +5,6 @@
     <Experience></Experience>
     <Certificate></Certificate>
     <Project></Project>
-
   </div>
 </template>
 
@@ -15,5 +14,4 @@ import AboutApplicant from '../../partials/applicant/AboutApplicant.vue'
 import Experience from '../../partials/applicant/Experience.vue'
 import Certificate from '../../partials/applicant/Certificate.vue'
 import Project from '../../partials/applicant/Project.vue'
-
 </script>
