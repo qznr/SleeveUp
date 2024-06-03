@@ -7,10 +7,26 @@ use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\ApplicantExperienceController;
 use App\Http\Controllers\ApplicantCertificateController;
 use App\Http\Controllers\ApplicantProjectController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\ProfessionController;
+use App\Http\Controllers\JobOfferController;
 
 Route::get('/', function () {
     return view('homepage');
 });
+
+Route::get('/explore-jobs', function () {
+    return view('homepage');
+});
+
+Route::get('/explore-companies', function () {
+    return view('homepage');
+});
+
+Route::get('/explore-events', function () {
+    return view('homepage');
+});
+
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -33,10 +49,11 @@ Route::middleware(['auth', 'role:applicant'])->group(function () {
     Route::put('/applicants/{id}', [ApplicantController::class, 'update']);
     Route::post('/users/{id}/profile-image', [UserController::class, 'updateProfileImage']);
     Route::post('/upload-test', [UserController::class, 'uploadTest']);
-
-
 });
 
 Route::apiResource('applicants.experiences', ApplicantExperienceController::class);
 Route::apiResource('applicants.certificates', ApplicantCertificateController::class);
 Route::apiResource('applicants.projects', ApplicantProjectController::class);
+Route::apiResource('companies', CompanyController::class);
+Route::apiResource('professions', ProfessionController::class);
+Route::apiResource('job_offers', JobOfferController::class);
