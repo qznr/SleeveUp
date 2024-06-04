@@ -19,6 +19,11 @@ Route::get('/explore-jobs', function () {
     return view('jobs');
 });
 
+Route::get('/explore-jobs/{id}', function ($id) {
+    return view('job-details', ['id' => $id]);
+})->name('job.details');
+
+
 Route::get('/explore-companies', function () {
     return view('companies');
 });

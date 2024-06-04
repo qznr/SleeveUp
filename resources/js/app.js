@@ -9,7 +9,13 @@ import Footer from "./layout/Footer.vue";
 
 import Register from "./pages/Register.vue";
 import Login from "./pages/Login.vue";
+import Company from "./pages/Company.vue";
+import Job from "./pages/Job.vue";
+import JobDetails from "./pages/JobDetails.vue";
+
+
 import ApplicantProfile from "./pages/applicant/Profile.vue";
+
 
 import Hero from "./partials/Hero.vue";
 import LogoGrid from "./partials/LogoGrid.vue";
@@ -24,6 +30,9 @@ app.component("navbar", Navbar);
 
 app.component("login", Login);
 app.component("register", Register);
+app.component("company", Company);
+app.component("job", Job);
+app.component("job-details", JobDetails);
 app.component("applicant-profile", ApplicantProfile);
 
 app.component("hero", Hero);
