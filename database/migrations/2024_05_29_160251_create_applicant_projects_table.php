@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('applicant_id')->constrained('applicants')->onDelete('cascade');
             $table->string('name');
-            $table->text('description')->nullable();
+            $table->string('description')->nullable();
             $table->string('type');
             $table->string('start_month');
             $table->integer('start_year');

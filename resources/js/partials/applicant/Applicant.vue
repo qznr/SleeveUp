@@ -1,9 +1,9 @@
 <template>
   <div class="bg-white max-w-screen-xl mx-auto p-8 rounded-xl shadow-xl relative">
     <div class="grid grid-cols-12 gap-x-8">
-      <button class="col-span-12 lg:col-span-2 lg:w-32 lg:h-32 w-52 h-52 mx-auto rounded-full" @click="showUploadModal = true">
-        <img :src="user.img" alt="User Image" class="rounded-full inline-block lg:w-32 lg:h-32 w-52 h-52">
-      </button>
+      <div class="col-span-12 lg:col-span-2 lg:w-32 lg:h-32 w-52 h-52 mx-auto rounded-full">
+        <img :src="user.img" alt="User Image">
+      </div>
       <div class="col-span-12 lg:col-span-9 flex flex-col justify-between">
         <div class="lg:flex justify-between mb-2">
           <h1 class="text-3xl my-4 lg:my-0 text-center lg:text-start">{{ user.name}}</h1>
@@ -14,9 +14,9 @@
             </div>
             <div class="group px-3 py-1 bg-[5742F5] text-gray-100 rounded-xl inline-flex items-center font-semibold capitalize">
               <p class='pr-1'>{{ user.applicant.status }}</p>
-              <!-- <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                 <path fill-rule="evenodd" d="M12.53 16.28a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 0 1 1.06-1.06L12 14.69l6.97-6.97a.75.75 0 1 1 1.06 1.06l-7.5 7.5Z" clip-rule="evenodd" />
-              </svg> -->
+              </svg>
             </div>
           </div>
         </div>
@@ -74,20 +74,6 @@
       </template>
     </Modal>
 
-    <Modal :show="showUploadModal" @close="showUploadModal = false" :maxWidth="'lg'">
-      <template v-slot>
-        <div class="max-w-md mx-auto h-40 rounded-lg border-2 border-dashed flex items-center justify-center my-6">
-          <label htmlFor="file" class="cursor-pointer text-center p-4 md:p-8">
-              <svg class="w-10 h-10 mx-auto" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.1667 26.6667C8.48477 26.6667 5.5 23.6819 5.5 20C5.5 16.8216 7.72428 14.1627 10.7012 13.4949C10.5695 12.9066 10.5 12.2947 10.5 11.6667C10.5 7.0643 14.231 3.33334 18.8333 3.33334C22.8655 3.33334 26.2288 6.19709 27.0003 10.0016C27.0556 10.0006 27.1111 10 27.1667 10C31.769 10 35.5 13.731 35.5 18.3333C35.5 22.3649 32.6371 25.7279 28.8333 26.5M25.5 21.6667L20.5 16.6667M20.5 16.6667L15.5 21.6667M20.5 16.6667L20.5 36.6667" stroke="#4F46E5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              </svg>
-              <p class="mt-3 text-gray-700 max-w-xs mx-auto">Click to <span class="font-medium text-indigo-600">Upload your  file</span> or drag and drop your file here</p>
-          </label>
-          <input id="file" type="file" class="hidden" accept=".jpeg,.jpg,.png" @change="handleFileUpload"/>
-        </div>
-      </template>
-    </Modal>
-
   </div>
 </template>
 
@@ -102,6 +88,7 @@ import SelectMenu from '../../components/SelectMenu.vue'
 
 const userStore = useUserStore();
 const user = ref(userStore.user);
+// console.log(user)
 
 watch(() => userStore.user, (newUser) => {
   user.value = newUser;
@@ -109,7 +96,6 @@ watch(() => userStore.user, (newUser) => {
 
 
 const showModal = ref(false);
-const showUploadModal = ref(false);
 
 const form = ref({
   name: user.value.name,
@@ -129,47 +115,12 @@ const statusOptions = ref([
   { value: 'Looking for partner', label: 'Looking for partner' },
 ]);
 
-const handleFileUpload = async (event) => {
-  const file = event.target.files[0];
-  const maxSizeMB = 2;
-  const maxSizeBytes = maxSizeMB * 1024 * 1024;
-
-  if (file) {
-
-    if (file.size > maxSizeBytes) {
-        alert(`File size exceeds ${maxSizeMB}MB. Please choose a smaller file.`);
-        event.target.value = null; // Reset the input
-        return;
-    }
-
-    let formData = new FormData();
-    formData.append('img', file);
-    try {
-      // const response = await axios.post('/upload-test', formData, {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data',
-      //   },
-      // });
-      userStore.updateProfileImage(formData)
-      if (response.status === 200) {
-        console.log('File uploaded successfully:', response.data.file_url);
-        showUploadModal.value = false;
-      } else {
-        console.error('File upload failed');
-      }
-    } catch (error) {
-      console.error('Error uploading file:', error.message);
-    }
-
-  }
-};
-
 const updateApplicant = async () => {
   try {
     const userData = {
       user: {
         name: form.value.name,
-        gender: form.value.gender,
+        gender: form.value.gender
       },
       applicant: {
         bio: form.value.bio,
@@ -180,7 +131,6 @@ const updateApplicant = async () => {
     const response = await userStore.updateUser(userData);
     if (response.success) {
       showModal.value = false;
-      showUploadModal.value = false;
     } else {
       alert('Failed to update profile');
     }

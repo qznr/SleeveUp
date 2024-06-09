@@ -22,11 +22,11 @@ class ApplicantProjectController extends Controller
             'name' => 'required|string',
             'description' => 'required|string',
             'type' => 'required|string',
-            'start_month' => 'required|string',
+            'start_month' => 'required|integer',
             'start_year' => 'required|integer',
-            'end_month' => 'required|string',
+            'end_month' => 'required|integer',
             'end_year' => 'required|integer',
-            'link' => 'sometimes|string',
+            'link' => 'sometimes|url',
         ]);
 
         $project = new ApplicantProject($validated);
@@ -49,11 +49,11 @@ class ApplicantProjectController extends Controller
             'name' => 'required|string',
             'description' => 'required|string',
             'type' => 'required|string',
-            'start_month' => 'required|string',
+            'start_month' => 'required|integer',
             'start_year' => 'required|integer',
-            'end_month' => 'required|string',
+            'end_month' => 'required|integer',
             'end_year' => 'required|integer',
-            'link' => 'sometimes|string',
+            'link' => 'sometimes|url',
         ]);
 
         $project->update($validated);

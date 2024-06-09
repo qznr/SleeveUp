@@ -8,7 +8,7 @@ const props = defineProps({
     },
     maxWidth: {
         type: String,
-        default: '2xl',
+        default: '4xl',
     },
     closeable: {
         type: Boolean,
@@ -92,7 +92,7 @@ const maxWidthClass = computed(() => {
                 >
                     <div
                         v-show="show"
-                        class="mb-6 bg-white rounded-lg shadow-xl transform transition-all sm:w-full sm:mx-auto"
+                        class="mb-6 bg-white rounded-lg shadow-xl transform transition-all sm:w-full sm:mx-auto overflow-hidden modal-content"
                         :class="maxWidthClass"
                     >
                         <slot v-if="show" />
@@ -102,3 +102,48 @@ const maxWidthClass = computed(() => {
         </Transition>
     </Teleport>
 </template>
+
+<style scoped>
+.fixed.inset-0 {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+.fixed.inset-0.flex {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overflow-y-auto {
+    overflow-y: auto;
+}
+
+.bg-black {
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.rounded-lg {
+    border-radius: 0.5rem;
+}
+
+.shadow-xl {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.transition-all {
+    transition: all 0.3s ease-in-out;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.modal-content {
+    margin-top: 50px; /* Adjust this value to move the modal content down */
+    max-height: calc(100vh - 100px); /* Ensure the modal content fits within the viewport */
+    overflow-y: auto; /* Allow scrolling if content exceeds viewport height */
+}
+</style>

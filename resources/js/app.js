@@ -9,19 +9,16 @@ import Footer from "./layout/Footer.vue";
 
 import Register from "./pages/Register.vue";
 import Login from "./pages/Login.vue";
-import Company from "./pages/Company.vue";
-import Job from "./pages/Job.vue";
-import JobDetails from "./pages/JobDetails.vue";
-
-
 import ApplicantProfile from "./pages/applicant/Profile.vue";
-
 
 import Hero from "./partials/Hero.vue";
 import LogoGrid from "./partials/LogoGrid.vue";
 import FeaturesSection from "./partials/FeaturesSection.vue";
 import Steps from "./partials/Steps.vue";
 import Contact from "./partials/Contact.vue";
+
+import Searchs from "./event/Searchs.vue";
+import Modal from "./components/Modal.vue";
 
 const app = createApp({});
 
@@ -30,9 +27,6 @@ app.component("navbar", Navbar);
 
 app.component("login", Login);
 app.component("register", Register);
-app.component("company", Company);
-app.component("job", Job);
-app.component("job-details", JobDetails);
 app.component("applicant-profile", ApplicantProfile);
 
 app.component("hero", Hero);
@@ -40,6 +34,10 @@ app.component("logogrid", LogoGrid);
 app.component("features", FeaturesSection);
 app.component("steps", Steps);
 app.component("contact", Contact);
+
+app.component("searchs", Searchs);
+
+app.component("Modal", Modal);
 
 const pinia = createPinia();
 

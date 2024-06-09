@@ -8,9 +8,4 @@ use Illuminate\Database\Eloquent\Model;
 class Profession extends Model
 {
     use HasFactory;
-
-    public function jobOffers()
-    {
-        return $this->hasMany(JobOffer::class);
-    }
 }

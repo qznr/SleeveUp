@@ -15,13 +15,11 @@ return new class extends Migration
             $table->id();
             $table->foreignId('profession_id')->constrained('professions')->onDelete('cascade');
             $table->foreignId('company_id')->constrained('companies')->onDelete('cascade');
-            $table->text('description');
-            $table->text('full_description');
+            $table->string('description');
             $table->string('salary');
-            $table->text('requirement');
+            $table->string('requirement');
             $table->string('is_remote');
             $table->string('type');
-            $table->text('benefits');
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_offers');
+        Schema::dropIfExists('jobs');
     }
 };
