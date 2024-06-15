@@ -2,6 +2,6 @@
 
 @section('content')
   <navbar></navbar>
-  <job></job>
+  <job-details :job-id="{{ $id }}"></job-details>
   <v-footer class="-mt-6"></vfooter>
 @endsection
