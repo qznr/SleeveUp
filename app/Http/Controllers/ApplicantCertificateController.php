@@ -21,13 +21,13 @@ class ApplicantCertificateController extends Controller
         $validated = $request->validate([
             'name' => 'required|string',
             'type' => 'required|string',
-            'start_month' => 'required|integer',
+            'start_month' => 'required|string',
             'start_year' => 'required|integer',
-            'end_month' => 'required|integer',
+            'end_month' => 'required|string',
             'end_year' => 'required|integer',
             'skills' => 'sometimes|string',
             'tools' => 'sometimes|string',
-            'link' => 'sometimes|url',
+            'link' => 'sometimes|string',
         ]);
 
         $certificate = new ApplicantCertificate($validated);
@@ -49,13 +49,13 @@ class ApplicantCertificateController extends Controller
         $validated = $request->validate([
             'name' => 'required|string',
             'type' => 'required|string',
-            'start_month' => 'required|integer',
+            'start_month' => 'required|string',
             'start_year' => 'required|integer',
-            'end_month' => 'required|integer',
+            'end_month' => 'required|string',
             'end_year' => 'required|integer',
             'skills' => 'sometimes|string',
             'tools' => 'sometimes|string',
-            'link' => 'sometimes|url',
+            'link' => 'sometimes|string',
         ]);
 
         $certificate->update($validated);

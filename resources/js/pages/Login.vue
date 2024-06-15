@@ -25,7 +25,7 @@
             </div>
             <button type="submit" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Login</button>
             <p class="text-sm font-light text-gray-500">
-              Don't have an account? <a href="/Register" class="font-medium text-indigo-600 hover:underline">Sign up here</a>
+              Don't have an account? <a href="/register" class="font-medium text-indigo-600 hover:underline">Sign up here</a>
             </p>
           </form>
         </div>
@@ -59,7 +59,7 @@ const handleSubmit = async () => {
       email: email.value,
       password: password.value,
     })
-
+    
     if (response.status === 200) {
       const userResponse = await axios.get('/user');
       userStore.setUser(userResponse.data.user)
