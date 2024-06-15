@@ -10,8 +10,8 @@ import Footer from "./layout/Footer.vue";
 import Register from "./pages/Register.vue";
 import Login from "./pages/Login.vue";
 import Company from "./pages/Company.vue";
-import Job from "./pages/Job.vue";
-import JobDetails from "./pages/JobDetails.vue";
+import Job from "./pages/job/Job.vue";
+import JobDetails from "./pages/job/JobDetails.vue";
 
 
 import ApplicantProfile from "./pages/applicant/Profile.vue";

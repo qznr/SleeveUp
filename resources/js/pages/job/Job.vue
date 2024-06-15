@@ -53,8 +53,8 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-import SearchInput from '../components/SearchInput.vue';
-import SelectMenu from '../components/SelectMenu.vue';
+import SearchInput from '../../components/SearchInput.vue';
+import SelectMenu from '../../components/SelectMenu.vue';
 
 const jobs = ref([]);
 const jobsLoaded = ref();

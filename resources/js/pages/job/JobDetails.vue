@@ -84,6 +84,25 @@
     </div>
   </Modal>
 
+  <!-- Success Modal -->
+  <Modal :show="showSuccessModal" @close="showSuccessModal = false" :maxWidth="'3xl'">
+    <div class="px-4 py-6">
+      <div class="flex justify-center mb-1 text-[25B4C4]">
+        <svg width="72" height="72" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M24 44C29.5228 44 34.5228 41.7614 38.1421 38.1421C41.7614 34.5228 44 29.5228 44 24C44 18.4772 41.7614 13.4772 38.1421 9.85786C34.5228 6.23858 29.5228 4 24 4C18.4772 4 13.4772 6.23858 9.85786 9.85786C6.23858 13.4772 4 18.4772 4 24C4 29.5228 6.23858 34.5228 9.85786 38.1421C13.4772 41.7614 18.4772 44 24 44Z" fill="#25B4C4" stroke="#25B4C4" stroke-width="4" stroke-linejoin="round"/>
+          <path d="M16 24L22 30L34 18" stroke="#FFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="text-center text-[381D4F]">
+        <h1 class="text-[28px] font-semibold"> Anda telah terdaftar! </h1>
+        <p class="text-[16px]">Jangan lupa cek email anda untuk informasi lebih lanjut!</p>
+      </div>
+      <div class="flex justify-center my-6">
+        <a href="/" class="bg-[5742F5] py-2 px-12 rounded-lg text-white font-semibold"> KEMBALI KE HOMEPAGE </a>
+      </div>
+    </div>
+  </Modal>
+
   <!-- No Profile Modal -->
   <Modal :show="showNoProfileModal" @close="showNoProfileModal = false" :maxWidth="'3xl'">
     <div class="px-4 py-6">
@@ -102,8 +121,8 @@
 <script setup>
 import { ref, onMounted, defineProps, computed} from 'vue';
 import axios from 'axios';
-import Modal from '../components/Modal.vue';
-import { useUserStore } from '../stores/userStore';
+import Modal from '../../components/Modal.vue';
+import { useUserStore } from '../../stores/userStore';
 
 
 const props = defineProps({
@@ -115,7 +134,6 @@ const props = defineProps({
 
 const userStore = useUserStore();
 const user = userStore.user;
-console.log(user)
 
 const job = ref(null);
 const showApplyModal = ref(false);
@@ -128,8 +146,8 @@ const checkProfile = async () => {
     console.log('Checking profile...')
     const response = await axios.get(`/user`);
     showApplyModal.value = false;
-    user.value = response.data
-    if (user.experience && user.certificate && user.project) {
+    console.log(response.data)
+    if (user.applicant.experiences && user.applicant.certificates && user.applicant.projects) {
       showSuccessModal.value = true;
     } else {
       showNoProfileModal.value = true;

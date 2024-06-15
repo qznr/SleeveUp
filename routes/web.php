@@ -16,11 +16,11 @@ Route::get('/', function () {
 });
 
 Route::get('/explore-jobs', function () {
-    return view('jobs');
+    return view('job.jobs');
 });
 
 Route::get('/explore-jobs/{id}', function ($id) {
-    return view('job-details', ['id' => $id]);
+    return view('job.job-details', ['id' => $id]);
 })->name('job.details');
 
 
