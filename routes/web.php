@@ -25,11 +25,11 @@ Route::get('/explore-jobs/{id}', function ($id) {
 
 
 Route::get('/explore-companies', function () {
-    return view('companies');
+    return view('company.companies');
 });
 
 Route::get('/explore-events', function () {
-    return view('events');
+    return view('event.events');
 });
 
 

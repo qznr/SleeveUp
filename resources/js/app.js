@@ -9,7 +9,7 @@ import Footer from "./layout/Footer.vue";
 
 import Register from "./pages/Register.vue";
 import Login from "./pages/Login.vue";
-import Company from "./pages/Company.vue";
+import Company from "./pages/company/Company.vue";
 import Job from "./pages/job/Job.vue";
 import JobDetails from "./pages/job/JobDetails.vue";
 

@@ -12,7 +12,7 @@ class JobOfferController extends Controller
      */
     public function index()
     {
-        $jobOffers = JobOffer::with(['company', 'profession'])->get();
+        $jobOffers = JobOffer::with(['company', 'profession'])->paginate(5);;
         return response()->json($jobOffers);
     }
 
