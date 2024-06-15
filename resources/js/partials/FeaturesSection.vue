@@ -17,13 +17,15 @@
       </div>
       <div class="relative mt-12">
         <ul class="grid gap-8 sm:grid-cols-2 xl:grid-cols-2">
-          <FeatureCard
-            v-for="feature in features"
-            :key="feature.title"
-            :icon="feature.icon"
-            :title="feature.title"
-            :desc="feature.desc"
-          />
+          <li v-for="feature in features" :key="feature.title">
+            <a :href="feature.link">
+              <FeatureCard
+                :icon="feature.icon"
+                :title="feature.title"
+                :desc="feature.desc"
+              />
+            </a>
+          </li>
         </ul>
       </div>
     </div>

@@ -12,6 +12,24 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+Route::get('/explore-jobs', function () {
+    return view('jobs');
+});
+
+Route::get('/explore-jobs/{id}', function ($id) {
+    return view('job-details', ['id' => $id]);
+})->name('job.details');
+
+
+Route::get('/explore-companies', function () {
+    return view('companies');
+});
+
+Route::get('/explore-events', function () {
+    return view('events');
+});
+
+
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');

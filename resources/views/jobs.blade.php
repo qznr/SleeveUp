@@ -2,6 +2,6 @@
 
 @section('content')
   <navbar></navbar>
-  <job></job>
-  <v-footer class="-mt-6"></vfooter>
+
+  <v-footer></vfooter>
 @endsection
