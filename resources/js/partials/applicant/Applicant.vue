@@ -131,13 +131,13 @@ const statusOptions = ref([
 
 const handleFileUpload = async (event) => {
   const file = event.target.files[0];
-  const maxSizeMB = 2;
-  const maxSizeBytes = maxSizeMB * 1024 * 1024;
+  const maxSizeKB = 512;
+  const maxSizeBytes = maxSizeKB * 1024;
 
   if (file) {
 
     if (file.size > maxSizeBytes) {
-        alert(`File size exceeds ${maxSizeMB}MB. Please choose a smaller file.`);
+        alert(`File size exceeds ${maxSizeKB}KB. Please choose a smaller file.`);
         event.target.value = null; // Reset the input
         return;
     }

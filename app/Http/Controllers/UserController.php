@@ -103,7 +103,7 @@ class UserController extends Controller
     {
         try {
             $request->validate([
-                'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:512',
             ]);
     
             $user = User::findOrFail($id);
