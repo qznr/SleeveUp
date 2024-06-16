@@ -9,7 +9,7 @@
           <h1 class="text-3xl my-4 lg:my-0 text-center lg:text-start">{{ user.name}}</h1>
 
           <div class="flex justify-between lg:flex-none lg:gap-x-10 my-4 lg:my-0">
-            <div class="group px-3 py-1 bg-[25B4C4] text-gray-100 rounded-xl inline-flex items-center font-semibold capitalize">
+            <div :class="genderClass">
               <p>{{ user.gender }}</p>
             </div>
             <div class="group px-3 py-1 bg-[5742F5] text-gray-100 rounded-xl inline-flex items-center font-semibold capitalize">
@@ -92,7 +92,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, computed} from 'vue';
 import { useUserStore } from '../../stores/userStore';
 import Modal from '../../components/Modal.vue';
 import TextArea from '../../components/TextArea.vue'
@@ -122,6 +122,14 @@ const genderOptions = ref([
   { value: 'female', label: 'Female' },
   { value: 'male', label: 'Male' },
 ]);
+
+console.log(user.value.gender.toLowerCase())
+
+const genderClass = computed(() => {
+  return user.value.gender.toLowerCase() === 'female'
+    ? 'group px-3 py-1 bg-[FF8AAF] text-gray-100 rounded-xl inline-flex items-center font-semibold capitalize'
+    : 'group px-3 py-1 bg-[25B4C4] text-gray-100 rounded-xl inline-flex items-center font-semibold capitalize';
+});
 
 const statusOptions = ref([
   { value: 'Looking for work', label: 'Looking for work' },
