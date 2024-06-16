@@ -11,7 +11,7 @@
     <!-- Search and Filter Section -->
     <div class="bg-[#151126] py-8 flex flex-col md:flex-row justify-center items-center gap-4">
       <SearchInput  v-model="searchQuery" class="mt-4 md:mt-0"></SearchInput>
-      <div class="flex flex-col md:flex-row gap-4 -mt-4">
+      <div class="flex md:flex-row gap-4 -mt-4">
         <SelectMenu v-model="selectedRemote" :fieldClasses="'bg-[#5742F5] py-3 px-3 text-white font-semibold border-none w-full md:w-32 capitalize'" :options="isRemoteOptions" placeholder="From"></SelectMenu>
         <SelectMenu v-model="selectedType" :fieldClasses="'bg-[#5742F5] py-3 px-3 text-white font-semibold border-none w-full md:w-32 capitalize'" :options="typeOptions" placeholder="Type"></SelectMenu>
         <!-- <button @click="fetchJobs" class="bg-[#5742F5] py-3 px-6 rounded-lg text-white font-semibold w-full md:w-auto">Search</button> -->

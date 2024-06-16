@@ -9,17 +9,27 @@
 
   <!-- Search and Filter Section -->
   <div class="bg-[#151126] py-8 flex flex-col md:flex-row justify-center items-center gap-4">
-    <SearchInput class="mt-4 md:mt-0"></SearchInput>
-    <div class="flex flex-col md:flex-row gap-4 md:-mt-4">
-      <SelectMenu :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-32'" :options="genderOptions" placeholder="Filter"></SelectMenu>
-      <SelectMenu :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-32'" :options="genderOptions" placeholder="Filter"></SelectMenu>
-      <button class="bg-[#5742F5] py-3 px-6 rounded-lg text-white font-semibold">Search</button>
+    <SearchInput v-model="searchQuery" class="mt-4 md:mt-0"></SearchInput>
+    <div class="flex md:flex-row gap-4 md:-mt-4">
+      <SelectMenu v-model="selectedType" :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-32'" :dropdownClasses="'overflow-y-auto max-h-36'" :options="typeOptions" placeholder="Type"></SelectMenu>
+      <SelectMenu v-model="selectedIndustry" :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-32'" :dropdownClasses="'overflow-y-auto max-h-36'" :options="industryOptions" placeholder="Industry"></SelectMenu>
+      <!-- <button class="bg-[#5742F5] py-3 px-6 rounded-lg text-white font-semibold">Search</button> -->
     </div>
   </div>
 
   <!-- Loading Section -->
   <div v-if="!companyLoaded" class="min-h-screen bg-[#151126] flex justify-center items-center">
     <h1 class="font-semibold text-5xl text-white">Loading...</h1>
+  </div>
+
+  <!-- Error Section -->
+  <div v-if="error" class="min-h-screen bg-[#151126] flex justify-center items-center">
+    <h1 class="font-semibold text-5xl text-red-500">{{ error }}</h1>
+  </div>
+
+  <!-- Empty Section -->
+  <div v-if="companyLoaded && companies.length === 0" class="min-h-screen bg-[#151126] flex justify-center items-center">
+    <h1 class="font-semibold text-5xl text-white">No Companies found.</h1>
   </div>
 
   <!-- Company Listing Section -->
@@ -29,6 +39,14 @@
         <div class="flex flex-col md:flex-row w-full">
           <img :src="company.img" class="size-48 md:size-64">
           <div class="w-full md:w-auto md:ml-4 mt-4 md:mt-0">
+            <div class="flex flex-wrap gap-2 mb-2">
+              <div class="group px-6 py-0.5 bg-[#25B4C4] text-gray-100 rounded-xl inline-flex items-center font-semibold capitalize">
+                <p>{{ company.type }}</p>
+              </div>
+              <div class="group px-6 py-0.5 bg-[#FF8AAF] text-gray-100 rounded-xl inline-flex items-center font-semibold capitalize">
+                <p>{{ company.industry }}</p>
+              </div>
+            </div>
             <h1 class="text-[28px] text-[#381D4F] font-semibold mb-2">{{ company.name }}</h1>
             <div class="flex items-center mb-2">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 mr-2 text-[#FF8AAF]">
@@ -55,30 +73,68 @@
 
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
 import SearchInput from '../../components/SearchInput.vue';
 import SelectMenu from '../../components/SelectMenu.vue';
+import debounce from 'lodash/debounce';
 
 const companies = ref([]);
 const companyLoaded = ref(false);
 const currentPage = ref(1);
 const totalPages = ref(0);
+const isLoading = ref(false);
+const error = ref(null);
 
-const genderOptions = ref([
-  { value: 'female', label: 'Female' },
-  { value: 'male', label: 'Male' },
-]);
+const typeOptions = ref([]);
+const industryOptions = ref([]);
+
+// Options for the SelectMenu component
+const fetchUniqueValues = async (endpoint, targetArray, transformFunc = null) => {
+  try {
+    const response = await axios.get(endpoint);
+
+    targetArray.value = response.data.map(item => {
+      let value = item.type || item.industry;
+      let label = transformFunc ? transformFunc(value) : value;
+      return { value, label };
+    });
+  } catch (error) {
+    console.error('Error fetching unique values:', error);
+  }
+};
+
+// Search and filter state
+const searchQuery = ref('');
+const selectedType = ref('');
+const selectedIndustry = ref('');
+
+// Watchers for search input and filters
+watch([searchQuery, selectedType, selectedIndustry], () => {
+  debouncedFetchCompanies();
+});
 
 const fetchCompanies = async (page = 1) => {
   try {
-    const response = await axios.get(`/companies?page=${page}`);
+    companyLoaded.value = false;
+    isLoading.value = true;
+    error.value = null;
+    const response = await axios.get('/companies', {
+      params: {
+        page,
+        search: searchQuery.value,
+        type: selectedType.value,
+        industry: selectedIndustry.value,
+      },
+    });
     companies.value = response.data.data;
     currentPage.value = response.data.current_page;
     totalPages.value = response.data.last_page;
-    companyLoaded.value = true;
   } catch (error) {
-    console.error('Error fetching companies:', error);
+    console.error('Error fetching companies. Please try again later.');
+  } finally {
+    companyLoaded.value = true;
+    isLoading.value = false;
   }
 };
 
@@ -94,7 +150,11 @@ const prevPage = () => {
   }
 };
 
+const debouncedFetchCompanies = debounce(fetchCompanies, 300);
+
 onMounted(() => {
   fetchCompanies();
+  fetchUniqueValues('/company/unique_types', typeOptions);
+  fetchUniqueValues('/company/unique_industries', industryOptions);
 });
 </script>

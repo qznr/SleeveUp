@@ -73,3 +73,6 @@ Route::apiResource('job_offers', JobOfferController::class);
 
 Route::get('/job/unique_is_remote', [JobOfferController::class, 'getUniqueIsRemote']);
 Route::get('/job/unique_types', [JobOfferController::class, 'getUniqueTypes']);
+
+Route::get('/company/unique_types', [CompanyController::class, 'getUniqueTypes']);
+Route::get('/company/unique_industries', [CompanyController::class, 'getUniqueIndustries']);

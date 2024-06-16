@@ -10,9 +10,29 @@ class CompanyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $companies = Company::paginate(5);
+
+        $query = Company::query();
+        // Search by company name
+        if ($request->has('search') && $request->input('search') !== null) {
+            $search = $request->input('search');
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+
+        // Filter by company type
+        if ($request->has('type') && $request->input('type') !== null) {
+            $query->where('type', $request->input('type'));
+        }
+
+        // Filter by company industry
+        if ($request->has('industry') && $request->input('industry') !== null) {
+            $query->where('industry', $request->input('industry'));
+        }
+        
+        // Paginate the results
+        $companies = $query->paginate(5);
+
         return response()->json($companies);
     }
 
@@ -77,5 +97,18 @@ class CompanyController extends Controller
             $company->delete();
             return response()->json(['message' => 'Company deleted successfully']);
         }
-        return response()->json(['message' => 'Company not found'], 404);    }
+        return response()->json(['message' => 'Company not found'], 404);    
+    }
+
+    public function getUniqueTypes()
+    {
+        $uniqueTypes = Company::select('type')->distinct()->get();
+        return response()->json($uniqueTypes);
+    }
+
+    public function getUniqueIndustries()
+    {
+        $uniqueIndustries = Company::select('industry')->distinct()->get();
+        return response()->json($uniqueIndustries);
+    }
 }
