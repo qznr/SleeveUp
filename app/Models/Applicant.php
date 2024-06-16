@@ -8,12 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Applicant extends Model
 {
     use HasFactory;
+
     protected $fillable = [
         'user_id',
-        'bio', 
+        'bio',
         'status',
-        'about_me', 
-        'description'
+        'about_me',
+        'current_education_or_work',
+    ];
+
+    // Define default attribute values
+    protected $attributes = [
+        'bio' => "Hi there! I'm using SleeveUp.",
+        'status' => 'Looking for work',
+        'about_me' => "Welcome to my profile. Here's a bit about me.",
+        'current_education_or_work' => 'Brawijaya University',
     ];
 
     public function user()
@@ -41,13 +50,11 @@ class Applicant extends Model
         return $this->experiences()->get();
     }
 
-    // Accessor for certificates
     public function getCertificatesListAttribute()
     {
         return $this->certificates()->get();
     }
 
-    // Accessor for projects
     public function getProjectsListAttribute()
     {
         return $this->projects()->get();

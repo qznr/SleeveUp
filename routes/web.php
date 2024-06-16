@@ -36,6 +36,10 @@ Route::get('/explore-events', function () {
     return view('event.events');
 });
 
+Route::get('/explore-events/{id}', function ($id) {
+    return view('event.event-details', ['id' => $id]);
+})->name('event.details');
+
 
 Route::get('/login', function () {
     return view('auth.login');

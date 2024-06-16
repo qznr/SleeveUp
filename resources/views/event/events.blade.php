@@ -3,5 +3,5 @@
 @section('content')
   <navbar></navbar>
 
-  <v-footer></vfooter>
+  <v-footer class="-mt-6"></vfooter>
 @endsection
