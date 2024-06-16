@@ -11,7 +11,7 @@
     <!-- Search and Filter Section -->
     <div class="bg-[#151126] py-8 flex flex-col md:flex-row justify-center items-center gap-4">
       <SearchInput class="mt-4 md:mt-0"></SearchInput>
-      <div class="flex flex-col md:flex-row gap-4">
+      <div class="flex flex-col md:flex-row gap-4 -mt-4">
         <SelectMenu :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-full md:w-32'" :options="genderOptions" placeholder="Filter"></SelectMenu>
         <SelectMenu :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-full md:w-32'" :options="genderOptions" placeholder="Filter"></SelectMenu>
         <button class="bg-[#5742F5] py-3 px-6 rounded-lg text-white font-semibold w-full md:w-auto">Search</button>
@@ -70,16 +70,19 @@ import axios from 'axios';
 import SearchInput from '../../components/SearchInput.vue';
 import SelectMenu from '../../components/SelectMenu.vue';
 
+// Reactive references to hold the jobs data, loading state, and pagination details
 const jobs = ref([]);
 const jobsLoaded = ref(false);
 const currentPage = ref(1);
 const totalPages = ref(0);
 
+// Options for the SelectMenu component
 const genderOptions = ref([
   { value: 'female', label: 'Female' },
   { value: 'male', label: 'Male' },
 ]);
 
+// Function to fetch jobs from the API
 const fetchJobs = async (page = 1) => {
   try {
     const response = await axios.get(`/job_offers?page=${page}`);
@@ -92,18 +95,21 @@ const fetchJobs = async (page = 1) => {
   }
 };
 
+// Function to fetch the next page of jobs
 const nextPage = () => {
   if (currentPage.value < totalPages.value) {
     fetchJobs(currentPage.value + 1);
   }
 };
 
+// Function to fetch the previous page of jobs
 const prevPage = () => {
   if (currentPage.value > 1) {
     fetchJobs(currentPage.value - 1);
   }
 };
 
+// Fetch jobs on component mount
 onMounted(() => {
   fetchJobs();
 });

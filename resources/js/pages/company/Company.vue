@@ -1,21 +1,28 @@
 <template>
+  <!-- Header Section -->
   <div class="max-w bg-gradient-to-r from-gray-700 to-gray-200 flex items-center justify-center text-white text-center">
     <div class="py-14 font-light">
       <h1 class="text-5xl mb-4 tracking-wider">Explore your options.</h1>
       <p class="text-2xl text-gray-300 tracking-normal">Find, apply or save it to your collection.</p>
     </div>
   </div>
+
+  <!-- Search and Filter Section -->
   <div class="bg-[#151126] py-8 flex flex-col md:flex-row justify-center items-center gap-4">
     <SearchInput class="mt-4 md:mt-0"></SearchInput>
-    <div class="flex flex-col md:flex-row gap-4">
+    <div class="flex flex-col md:flex-row gap-4 md:-mt-4">
       <SelectMenu :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-32'" :options="genderOptions" placeholder="Filter"></SelectMenu>
       <SelectMenu :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-32'" :options="genderOptions" placeholder="Filter"></SelectMenu>
       <button class="bg-[#5742F5] py-3 px-6 rounded-lg text-white font-semibold">Search</button>
     </div>
   </div>
+
+  <!-- Loading Section -->
   <div v-if="!companyLoaded" class="min-h-screen bg-[#151126] flex justify-center items-center">
     <h1 class="font-semibold text-5xl text-white">Loading...</h1>
   </div>
+
+  <!-- Company Listing Section -->
   <div v-if="companyLoaded" class="bg-[#151126] pb-6">
     <ul class="max-w-7xl mx-auto">
       <li v-for="company in companies" :key="company.id" class="flex flex-col md:flex-row justify-between items-start md:items-end bg-white xl:mx-auto mx-12 mb-6 rounded-xl py-8 px-8">
@@ -35,7 +42,7 @@
             </div>
           </div>
         </div>
-        <a :href="`/explore-companys/${company.id}`" class="bg-[#5742F5] py-3 px-12 rounded-lg text-white font-semibold mt-4 md:mt-0">Details</a>
+        <a :href="`/explore-companies/${company.id}`" class="bg-[#5742F5] py-3 px-12 rounded-lg text-white font-semibold mt-4 md:mt-0">Details</a>
       </li>
     </ul>
     <div class="max-w-7xl mx-auto flex justify-between items-center">

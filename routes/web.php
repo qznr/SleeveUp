@@ -28,6 +28,10 @@ Route::get('/explore-companies', function () {
     return view('company.companies');
 });
 
+Route::get('/explore-companies/{id}', function ($id) {
+    return view('company.company-details', ['id' => $id]);
+})->name('company.details');
+
 Route::get('/explore-events', function () {
     return view('event.events');
 });

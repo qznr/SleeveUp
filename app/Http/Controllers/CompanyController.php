@@ -39,7 +39,7 @@ class CompanyController extends Controller
      */
     public function show(string $id)
     {
-        $company = Company::find($id);
+        $company = Company::with('jobOffers')->find($id);
         if ($company) {
             return response()->json($company);
         }

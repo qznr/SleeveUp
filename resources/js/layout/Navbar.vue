@@ -89,7 +89,6 @@ const open = ref(false);
 const defaultImage = '/img/user/placeholder.png';
 const navigation = [
   { title: "Chatbot", router: "/chatbot" },
-  { title: "Feedback", router: "/feedback" },
 ];
 
 const menuOpen = () => {

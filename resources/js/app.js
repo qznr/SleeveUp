@@ -10,6 +10,7 @@ import Footer from "./layout/Footer.vue";
 import Register from "./pages/Register.vue";
 import Login from "./pages/Login.vue";
 import Company from "./pages/company/Company.vue";
+import CompanyDetails from "./pages/company/CompanyDetails.vue"
 import Job from "./pages/job/Job.vue";
 import JobDetails from "./pages/job/JobDetails.vue";
 
@@ -31,6 +32,7 @@ app.component("navbar", Navbar);
 app.component("login", Login);
 app.component("register", Register);
 app.component("company", Company);
+app.component("company-details", CompanyDetails);
 app.component("job", Job);
 app.component("job-details", JobDetails);
 app.component("applicant-profile", ApplicantProfile);
