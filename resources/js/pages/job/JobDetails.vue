@@ -145,9 +145,10 @@ const checkProfile = async () => {
   try {
     console.log('Checking profile...')
     const response = await axios.get(`/user`);
+    user.value = response.data;
+    console.log(user.value)
     showApplyModal.value = false;
-    console.log(response.data)
-    if (user.applicant.experiences && user.applicant.certificates && user.applicant.projects) {
+    if (user.applicant.experiences.length > 0 && user.applicant.certificates.length > 0 && user.applicant.projects.length > 0) {
       showSuccessModal.value = true;
     } else {
       showNoProfileModal.value = true;
