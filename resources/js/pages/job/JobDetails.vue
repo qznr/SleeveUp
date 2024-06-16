@@ -28,7 +28,7 @@
     <div class="max-w-7xl mx-auto">
       <h1 class="mb-2 font-semibold text-white text-[28px]">About Company</h1>
       <div class="flex justify-between items-end bg-white border-4 border-[25B4C4] mb-6 rounded-xl py-8 px-8 text-[381D4F]">
-        <div class="description" v-html="job.company.description"></div>
+        <div class="description" v-html="job.company.full_description"></div>
       </div>
       <div class="flex justify-center mb-4">
         <h1 class="text-[32px] text-white font-semibold mb-2">{{ job.profession.name }}</h1>
