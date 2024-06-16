@@ -88,7 +88,10 @@ const userStore = useUserStore();
 const open = ref(false);
 const defaultImage = '/img/user/placeholder.png';
 const navigation = [
-  { title: "Chatbot", router: "/chatbot" },
+  { title: "Jobs", router: "/explore-jobs" },
+  { title: "Companies", router: "/explore-companies" },
+  { title: "Events", router: "/explore-events" },
+
 ];
 
 const menuOpen = () => {
