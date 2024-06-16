@@ -13,10 +13,7 @@ import Company from "./pages/company/Company.vue";
 import CompanyDetails from "./pages/company/CompanyDetails.vue"
 import Job from "./pages/job/Job.vue";
 import JobDetails from "./pages/job/JobDetails.vue";
-
-
 import ApplicantProfile from "./pages/applicant/Profile.vue";
-
 
 import Hero from "./partials/Hero.vue";
 import LogoGrid from "./partials/LogoGrid.vue";
