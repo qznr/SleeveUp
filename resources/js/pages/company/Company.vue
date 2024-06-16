@@ -9,7 +9,7 @@
 
   <!-- Search and Filter Section -->
   <div class="bg-[#151126] py-8 flex flex-col md:flex-row justify-center items-center gap-4">
-    <SearchInput v-model="searchQuery" class="mt-4 md:mt-0"></SearchInput>
+    <SearchInput v-model="searchQuery" class="mt-4 md:mt-0" @dblclick="resetFilters"></SearchInput>
     <div class="flex md:flex-row gap-4 md:-mt-4">
       <SelectMenu v-model="selectedType" :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-32'" :dropdownClasses="'overflow-y-auto max-h-36'" :options="typeOptions" placeholder="Type"></SelectMenu>
       <SelectMenu v-model="selectedIndustry" :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-32'" :dropdownClasses="'overflow-y-auto max-h-36'" :options="industryOptions" placeholder="Industry"></SelectMenu>
@@ -151,6 +151,13 @@ const prevPage = () => {
 };
 
 const debouncedFetchCompanies = debounce(fetchCompanies, 300);
+
+const resetFilters = () => {
+  searchQuery.value = '';
+  selectedType.value = '';
+  selectedIndustry.value = '';
+  fetchCompanies();
+};
 
 onMounted(() => {
   fetchCompanies();

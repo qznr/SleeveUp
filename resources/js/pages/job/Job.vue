@@ -10,7 +10,7 @@
 
     <!-- Search and Filter Section -->
     <div class="bg-[#151126] py-8 flex flex-col md:flex-row justify-center items-center gap-4">
-      <SearchInput  v-model="searchQuery" class="mt-4 md:mt-0"></SearchInput>
+      <SearchInput  v-model="searchQuery" class="mt-4 md:mt-0" @dblclick="resetFilters"></SearchInput>
       <div class="flex md:flex-row gap-4 -mt-4">
         <SelectMenu v-model="selectedRemote" :fieldClasses="'bg-[#5742F5] py-3 px-3 text-white font-semibold border-none w-full md:w-32 capitalize'" :options="isRemoteOptions" placeholder="From"></SelectMenu>
         <SelectMenu v-model="selectedType" :fieldClasses="'bg-[#5742F5] py-3 px-3 text-white font-semibold border-none w-full md:w-32 capitalize'" :options="typeOptions" placeholder="Type"></SelectMenu>
@@ -161,6 +161,14 @@ const prevPage = () => {
 watch([searchQuery, selectedRemote, selectedType], () => {
   debouncedFetchJobs();
 });
+
+const resetFilters = () => {
+  searchQuery.value = '';
+  selectedType.value = '';
+  selectedRemote.value = '';
+  fetchJobs();
+};
+
 
 // Fetch jobs on component mount
 onMounted(() => {
