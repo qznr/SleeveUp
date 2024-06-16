@@ -19,9 +19,9 @@ export const useUserStore = defineStore('user', {
     },
     async logout() {
       try {
-        await axios.post('/logout');
         this.clearUser();
         window.location.href = '/';
+        await axios.post('/logout');
       } catch (error) {
         console.error('Error during logout', error);
       }

@@ -10,11 +10,11 @@
 
     <!-- Search and Filter Section -->
     <div class="bg-[#151126] py-8 flex flex-col md:flex-row justify-center items-center gap-4">
-      <SearchInput class="mt-4 md:mt-0"></SearchInput>
+      <SearchInput  v-model="searchQuery" class="mt-4 md:mt-0"></SearchInput>
       <div class="flex flex-col md:flex-row gap-4 -mt-4">
-        <SelectMenu :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-full md:w-32'" :options="genderOptions" placeholder="Filter"></SelectMenu>
-        <SelectMenu :fieldClasses="'bg-[#5742F5] py-3 px-6 text-white font-semibold border-none w-full md:w-32'" :options="genderOptions" placeholder="Filter"></SelectMenu>
-        <button class="bg-[#5742F5] py-3 px-6 rounded-lg text-white font-semibold w-full md:w-auto">Search</button>
+        <SelectMenu v-model="selectedRemote" :fieldClasses="'bg-[#5742F5] py-3 px-3 text-white font-semibold border-none w-full md:w-32 capitalize'" :options="isRemoteOptions" placeholder="From"></SelectMenu>
+        <SelectMenu v-model="selectedType" :fieldClasses="'bg-[#5742F5] py-3 px-3 text-white font-semibold border-none w-full md:w-32 capitalize'" :options="typeOptions" placeholder="Type"></SelectMenu>
+        <!-- <button @click="fetchJobs" class="bg-[#5742F5] py-3 px-6 rounded-lg text-white font-semibold w-full md:w-auto">Search</button> -->
       </div>
     </div>
 
@@ -22,6 +22,17 @@
     <div v-if="!jobsLoaded" class="min-h-screen bg-[#151126] flex justify-center items-center">
       <h1 class="font-semibold text-5xl text-white">Loading...</h1>
     </div>
+
+    <!-- Error Section -->
+    <div v-if="error" class="min-h-screen bg-[#151126] flex justify-center items-center">
+      <h1 class="font-semibold text-5xl text-red-500">{{ error }}</h1>
+    </div>
+
+    <!-- Empty Section -->
+    <div v-if="jobsLoaded && jobs.length === 0" class="min-h-screen bg-[#151126] flex justify-center items-center">
+      <h1 class="font-semibold text-5xl text-white">No jobs found.</h1>
+    </div>
+
 
     <!-- Job Listings Section -->
     <div v-if="jobsLoaded" class="bg-[#151126] pb-6">
@@ -56,44 +67,81 @@
         </li>
       </ul>
       <div class="max-w-7xl mx-auto px-4 md:px-0 flex justify-between items-center">
-        <button @click="prevPage" :disabled="currentPage === 1" class="bg-[#5742F5] py-2 px-4 rounded-lg text-white font-semibold">Previous</button>
+        <button @click="prevPage" :disabled="currentPage === 1 || isLoading" class="bg-[#5742F5] py-2 px-4 rounded-lg text-white font-semibold">Previous</button>
         <span class="text-white">Page {{ currentPage }} of {{ totalPages }}</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-[#5742F5] py-2 px-4 rounded-lg text-white font-semibold">Next</button>
+        <button @click="nextPage" :disabled="currentPage === totalPages || isLoading" class="bg-[#5742F5] py-2 px-4 rounded-lg text-white font-semibold">Next</button>
       </div>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import axios from 'axios';
 import SearchInput from '../../components/SearchInput.vue';
 import SelectMenu from '../../components/SelectMenu.vue';
+import debounce from 'lodash/debounce';
 
 // Reactive references to hold the jobs data, loading state, and pagination details
 const jobs = ref([]);
 const jobsLoaded = ref(false);
 const currentPage = ref(1);
 const totalPages = ref(0);
+const isLoading = ref(false);
+const error = ref(null);
+
+// Search and filter state
+const searchQuery = ref('');
+const selectedRemote = ref('');
+const selectedType = ref('');
 
 // Options for the SelectMenu component
-const genderOptions = ref([
-  { value: 'female', label: 'Female' },
-  { value: 'male', label: 'Male' },
-]);
+const fetchUniqueValues = async (endpoint, targetArray, transformFunc = null) => {
+  try {
+    const response = await axios.get(endpoint);
+    targetArray.value = response.data.map(item => {
+      let value = item.type || item.is_remote;
+      let label = transformFunc ? transformFunc(value) : value;
+      return { value, label };
+    });
+  } catch (error) {
+    console.error('Error fetching unique values:', error);
+  }
+};
+
+const transformIsRemote = (value) => value === 'yes' ? 'Remote' : 'Office';
+
+const isRemoteOptions = ref([]);
+const typeOptions = ref([]);
 
 // Function to fetch jobs from the API
 const fetchJobs = async (page = 1) => {
   try {
-    const response = await axios.get(`/job_offers?page=${page}`);
+    jobsLoaded.value = false;
+    isLoading.value = true;
+    error.value = null;
+    console.log(searchQuery.value)
+    const response = await axios.get('/job_offers', {
+      params: {
+        page,
+        search: searchQuery.value,
+        remote: selectedRemote.value,
+        type: selectedType.value,
+      },
+    });
+    console.log(response.data)
     jobs.value = response.data.data;
     currentPage.value = response.data.current_page;
     totalPages.value = response.data.last_page;
+  } catch (err) {
+    error.value = 'Error fetching jobs. Please try again later.';
+  } finally {
     jobsLoaded.value = true;
-  } catch (error) {
-    console.error('Error fetching jobs:', error);
+    isLoading.value = false;
   }
 };
+
+const debouncedFetchJobs = debounce(fetchJobs, 300);
 
 // Function to fetch the next page of jobs
 const nextPage = () => {
@@ -109,8 +157,15 @@ const prevPage = () => {
   }
 };
 
+// Watchers for search input and filters
+watch([searchQuery, selectedRemote, selectedType], () => {
+  debouncedFetchJobs();
+});
+
 // Fetch jobs on component mount
 onMounted(() => {
   fetchJobs();
+  fetchUniqueValues('/job/unique_is_remote', isRemoteOptions, transformIsRemote);
+  fetchUniqueValues('/job/unique_types', typeOptions);
 });
 </script>

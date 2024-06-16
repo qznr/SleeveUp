@@ -4,15 +4,36 @@ namespace App\Http\Controllers;
 use App\Models\JobOffer;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class JobOfferController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $jobOffers = JobOffer::with(['company', 'profession'])->paginate(5);;
+
+        $query = JobOffer::with(['company', 'profession']);
+
+        // Search by job profession name
+        if ($request->has('search') && $request->input('search') !== null) {
+            $search = $request->input('search');
+            $query->whereHas('profession', function($q) use ($search) {
+                $q->where('name', 'LIKE', '%' . $search . '%');
+            });
+        }
+
+        // Filter by remote status
+        if ($request->has('remote') && $request->input('remote') !== null) {
+            $query->where('is_remote', $request->input('remote'));
+        }
+
+        // Filter by job type
+        if ($request->has('type') && $request->input('type') !== null) {
+            $query->where('type', $request->input('type'));
+        }
+        $jobOffers = $query->paginate(5);
         return response()->json($jobOffers);
     }
 
@@ -82,4 +103,17 @@ class JobOfferController extends Controller
         }
         return response()->json(['message' => 'Job offer not found'], 404);
     }
+
+        public function getUniqueIsRemote()
+    {
+        $uniqueIsRemote = JobOffer::select('is_remote')->distinct()->get();
+        return response()->json($uniqueIsRemote);
+    }
+
+    public function getUniqueTypes()
+    {
+        $uniqueTypes = JobOffer::select('type')->distinct()->get();
+        return response()->json($uniqueTypes);
+    }
+
 }
