@@ -3,17 +3,17 @@
     <h1 class="font-semibold text-5xl text-white">Loading...</h1>
   </div>
   <div v-if="company" class="bg-[151126]">
-    <div class="flex max-w-5xl mx-auto py-6 mb-6 rounded-xl ">
+    <div class="flex flex-col lg:flex-row max-w-5xl mx-auto py-6 mb-6 rounded-xl items-center">
         <img :src="company.img" class="rounded-full inline-block lg:w-44 lg:h-44 w-52 h-52">
-        <div class="text-white ml-6 mt-3">
+        <div class="text-white ml-0 lg:ml-6 mt-3 lg:mt-0 text-center lg:text-left">
           <h1 class="text-[32px] font-semibold">{{ company.name }}</h1>
-          <div class="flex mb-2 py-1">
+          <div class="flex justify-center lg:justify-start mb-2 py-1">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 mr-2 text-[FF8AAF]">
               <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
             </svg>
             <span>{{ company.address }}</span>
           </div>
-          <div class="flex mb-2 py-1">
+          <div class="flex justify-center lg:justify-start mb-2 py-1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-2 text-[FF8AAF]">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
             </svg>

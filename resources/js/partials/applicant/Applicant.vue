@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white max-w-screen-xl mx-auto p-8 rounded-xl shadow-xl relative">
+  <div class="bg-white max-w-screen-xl mx-6 xl:mx-auto p-8 rounded-xl shadow-xl relative">
     <div class="grid grid-cols-12 gap-x-8">
       <button class="col-span-12 lg:col-span-2 lg:w-32 lg:h-32 w-52 h-52 mx-auto rounded-full" @click="showUploadModal = true">
         <img :src="user.img" alt="User Image" class="rounded-full inline-block lg:w-32 lg:h-32 w-52 h-52">

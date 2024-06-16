@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-white max-w-screen-xl mx-auto p-8 rounded-xl shadow-xl relative mb-6" id="#certificate">
+  <div class="bg-white max-w-screen-xl mx-6 xl:mx-auto p-8 rounded-xl shadow-xl relative mb-6" id="#certificate">
     <div class="flex mb-3 items-center justify-between">
       <h1 class="text-3xl text-[381D4F] font-semibold">Pelatihan & Sertifikasi</h1>
       <button class="col-span-12 lg:col-span-1 flex text-[5742F5]" @click="showAddModal = true">

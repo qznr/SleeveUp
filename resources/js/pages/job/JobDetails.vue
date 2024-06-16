@@ -3,17 +3,17 @@
     <h1 class="font-semibold text-5xl text-white">Loading...</h1>
   </div>
   <div v-if="job" class="bg-[151126]">
-    <div class="flex max-w-5xl mx-auto py-6 mb-6 rounded-xl ">
-        <img :src="job.company.img" class="rounded-full inline-block lg:w-44 lg:h-44 w-52 h-52">
-        <div class="text-white ml-6 mt-3">
-          <h1 class="text-[32px] font-semibold">{{ job.company.name }}</h1>
-          <div class="flex mb-2 py-1">
+    <div class="flex flex-col lg:flex-row max-w-5xl mx-auto py-6 mb-6 rounded-xl items-center">
+        <img :src="job.company.img" class="rounded-full w-44 h-44 lg:w-52 lg:h-52">
+        <div class="text-white ml-0 lg:ml-6 mt-3 lg:mt-0 text-center lg:text-left">
+          <h1 class="text-2xl lg:text-[32px] font-semibold">{{ job.company.name }}</h1>
+          <div class="flex justify-center lg:justify-start mb-2 py-1">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6 mr-2 text-[FF8AAF]">
               <path fill-rule="evenodd" d="m11.54 22.351.07.04.028.016a.76.76 0 0 0 .723 0l.028-.015.071-.041a16.975 16.975 0 0 0 1.144-.742 19.58 19.58 0 0 0 2.683-2.282c1.944-1.99 3.963-4.98 3.963-8.827a8.25 8.25 0 0 0-16.5 0c0 3.846 2.02 6.837 3.963 8.827a19.58 19.58 0 0 0 2.682 2.282 16.975 16.975 0 0 0 1.145.742ZM12 13.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" clip-rule="evenodd" />
             </svg>
             <span>{{ job.company.address }}</span>
           </div>
-          <div class="flex mb-2 py-1">
+          <div class="flex justify-center lg:justify-start mb-2 py-1">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 mr-2 text-[FF8AAF]">
               <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
             </svg>
@@ -25,14 +25,14 @@
           </div>
         </div>
     </div>
-    <div class="max-w-7xl mx-auto">
-      <h1 class="mb-2 font-semibold text-white text-[28px]">About Company</h1>
-      <div class="flex justify-between items-end bg-white border-4 border-[25B4C4] mb-6 rounded-xl py-8 px-8 text-[381D4F]">
+    <div class="max-w-7xl mx-auto px-4 lg:px-0">
+      <h1 class="mb-2 font-semibold text-white text-2xl lg:text-[28px]">About Company</h1>
+      <div class="bg-white border-4 border-[25B4C4] mb-6 rounded-xl py-8 px-8 text-[381D4F]">
         <div class="description" v-html="job.company.full_description"></div>
       </div>
-      <div class="flex justify-center mb-4">
-        <h1 class="text-[32px] text-white font-semibold mb-2">{{ job.profession.name }}</h1>
-        <div class="flex items-center gap-x-4 ml-4">
+      <div class="flex flex-col lg:flex-row justify-center items-center mb-4">
+        <h1 class="text-[28px] lg:text-[32px] text-white font-semibold mb-2">{{ job.profession.name }}</h1>
+        <div class="flex items-center gap-x-4 ml-0 lg:ml-4">
           <div class="px-6 py-0.5 bg-[25B4C4] text-gray-100 rounded-xl inline-flex items-center font-semibold capitalize">
             <p>{{ job.is_remote=="yes" ? "Remote" : "Office"}}</p>
           </div>
@@ -41,22 +41,22 @@
           </div>
         </div>
       </div>
-      <div class="grid grid-cols-2 gap-x-4 text-[381D4F]">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-4 text-[381D4F]">
         <div class="bg-white border-4 border-[25B4C4] mb-6 rounded-xl py-8 px-8 ">
-          <h1 class="text-[28px] font-semibold mb-1">Persyaratan</h1>
+          <h1 class="text-2xl lg:text-[28px] font-semibold mb-1">Persyaratan</h1>
           <div class="description" v-html="job.requirement"></div>
         </div>
         <div class="bg-white border-4 border-[25B4C4] mb-6 rounded-xl py-8 px-8">
-          <h1 class="text-[28px] font-semibold mb-1">Fasilitas Karyawan</h1>
+          <h1 class="text-2xl lg:text-[28px] font-semibold mb-1">Fasilitas Karyawan</h1>
           <div class="description" v-html="job.benefits"></div>
         </div>
       </div>
       <div class="bg-white border-4 border-[25B4C4] mb-6 rounded-xl py-8 px-8 text-[381D4F]">
-        <h1 class="text-[28px] font-semibold mb-1">Deskripsi Pekerjaan</h1>
+        <h1 class="text-2xl lg:text-[28px] font-semibold mb-1">Deskripsi Pekerjaan</h1>
         <div class="description" v-html="job.full_description"></div>
       </div>
       <div class="flex justify-center">
-        <button @click="showApplyModal= true" class="bg-[5742F5] py-3 px-6 rounded-lg text-white font-semibold"> AJUKAN LAMARAN PEKERJAAN </button>
+        <button @click="showApplyModal = true" class="bg-[5742F5] py-3 px-6 rounded-lg text-white font-semibold"> AJUKAN LAMARAN PEKERJAAN </button>
       </div>
     </div>
   </div>
@@ -65,17 +65,17 @@
   <Modal :show="showApplyModal" @close="showApplyModal = false" :maxWidth="'3xl'">
     <div class="px-4 pt-12 pb-6" v-if="user">
       <div class="text-center text-[381D4F]">
-        <h1 class="text-[28px] font-semibold mb-5"> Apakah anda yakin ingin mengajukan lamaran? </h1>
+        <h1 class="text-2xl lg:text-[28px] font-semibold mb-5"> Apakah anda yakin ingin mengajukan lamaran? </h1>
         <p class="text-[16px]">Pastikan profil anda telah berisi informasi terbaru tentang anda</p>
       </div>
       <div class="flex justify-center gap-x-12 my-6">
         <button @click="checkProfile()" class="bg-[5742F5] py-2 px-12 rounded-lg text-white font-semibold"> Ya </button>
-        <button @click="showApplyModal= false" class="bg-[5742F5] py-3 px-12 rounded-lg text-white font-semibold"> Batal </button>
+        <button @click="showApplyModal = false" class="bg-[5742F5] py-3 px-12 rounded-lg text-white font-semibold"> Batal </button>
       </div>
     </div>
     <div v-else class="px-4 py-6">
       <div class="text-center text-[381D4F]">
-        <h1 class="text-[28px] font-semibold mb-5"> Silakan Login untuk Mengajukan Lamaran Pekerjaan </h1>
+        <h1 class="text-2xl lg:text-[28px] font-semibold mb-5"> Silakan Login untuk Mengajukan Lamaran Pekerjaan </h1>
         <p class="text-[16px]">Pastikan profil anda berisi informasi terbaru tentang anda</p>
       </div>
       <div class="flex justify-center my-6">
@@ -94,7 +94,7 @@
         </svg>
       </div>
       <div class="text-center text-[381D4F]">
-        <h1 class="text-[28px] font-semibold"> Anda telah terdaftar! </h1>
+        <h1 class="text-2xl lg:text-[28px] font-semibold"> Anda telah terdaftar! </h1>
         <p class="text-[16px]">Jangan lupa cek email anda untuk informasi lebih lanjut!</p>
       </div>
       <div class="flex justify-center my-6">
@@ -107,7 +107,7 @@
   <Modal :show="showNoProfileModal" @close="showNoProfileModal = false" :maxWidth="'3xl'">
     <div class="px-4 py-6">
       <div class="text-center text-[381D4F]">
-        <h1 class="text-[28px] font-semibold mb-5"> Harap lengkapi profil anda terlebih dahulu! </h1>
+        <h1 class="text-2xl lg:text-[28px] font-semibold mb-5"> Harap lengkapi profil anda terlebih dahulu! </h1>
         <p class="text-[16px]">Pastikan profil anda telah berisi informasi terbaru tentang anda</p>
       </div>
       <div class="flex justify-center my-6">
@@ -115,7 +115,6 @@
       </div>
     </div>
   </Modal>
-
 </template>
 
 <script setup>
@@ -123,7 +122,6 @@ import { ref, onMounted, defineProps, computed} from 'vue';
 import axios from 'axios';
 import Modal from '../../components/Modal.vue';
 import { useUserStore } from '../../stores/userStore';
-
 
 const props = defineProps({
   jobId: {
@@ -139,7 +137,6 @@ const job = ref(null);
 const showApplyModal = ref(false);
 const showNoProfileModal = ref(false);
 const showSuccessModal = ref(false);
-
 
 const checkProfile = async () => {
   try {
@@ -174,14 +171,13 @@ onMounted(() => {
 </script>
 
 <style scoped>
-
 ::v-deep.description ul {
-  list-style-type: disc; /* or whatever style you want */
-  margin-left: 20px; /* adjust as needed */
-  padding: 10px; /* adjust as needed */
+  list-style-type: disc;
+  margin-left: 20px;
+  padding: 10px;
 }
 
 ::v-deep.description ul li {
-  margin-bottom: 3px; /* adjust as needed */
+  margin-bottom: 3px;
 }
 </style>
