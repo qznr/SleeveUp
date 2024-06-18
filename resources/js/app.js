@@ -9,6 +9,7 @@ import Footer from "./layout/Footer.vue";
 
 import Register from "./pages/Register.vue";
 import Login from "./pages/Login.vue";
+import Event from "./pages/event/Event.vue";
 import Company from "./pages/company/Company.vue";
 import CompanyDetails from "./pages/company/CompanyDetails.vue"
 import Job from "./pages/job/Job.vue";
@@ -28,6 +29,7 @@ app.component("navbar", Navbar);
 
 app.component("login", Login);
 app.component("register", Register);
+app.component("event", Event);
 app.component("company", Company);
 app.component("company-details", CompanyDetails);
 app.component("job", Job);

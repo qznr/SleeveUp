@@ -10,6 +10,7 @@ use App\Http\Controllers\ApplicantProjectController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ProfessionController;
 use App\Http\Controllers\JobOfferController;
+use App\Http\Controllers\EventController;
 
 Route::get('/', function () {
     return view('homepage');
@@ -70,9 +71,14 @@ Route::apiResource('applicants.projects', ApplicantProjectController::class);
 Route::apiResource('companies', CompanyController::class);
 Route::apiResource('professions', ProfessionController::class);
 Route::apiResource('job_offers', JobOfferController::class);
+Route::apiResource('events', EventController::class);
+
 
 Route::get('/job/unique_is_remote', [JobOfferController::class, 'getUniqueIsRemote']);
 Route::get('/job/unique_types', [JobOfferController::class, 'getUniqueTypes']);
 
 Route::get('/company/unique_types', [CompanyController::class, 'getUniqueTypes']);
 Route::get('/company/unique_industries', [CompanyController::class, 'getUniqueIndustries']);
+
+Route::get('/event/unique_types', [EventController::class, 'getUniqueTypes']);
+
