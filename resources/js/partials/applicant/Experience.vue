@@ -84,7 +84,7 @@
           </div>
           <div class="mb-4">
             <label for="startYear" class="block text-sm font-medium text-[381D4F]">Lama Jenjang Karir</label>
-            <div class="flex gap-x-12">
+            <div class="flex flex-wrap sm:flex-nowrap gap-4 sm:gap-x-12">
               <TextInput id="startYear" v-model="addForm.start_year" type="text" class="mt-1 block w-36" :placeholder="'Tahun Mulai'" required></TextInput>
               <TextInput id="endYear" v-model="addForm.end_year" type="text" class="mt-1 block w-36" :placeholder="'Tahun Selesai'"> required</TextInput>
             </div>
@@ -125,7 +125,7 @@
           </div>
           <div class="mb-4">
             <label for="startYear" class="block text-sm font-medium text-[381D4F]">Lama Jenjang Karir</label>
-            <div class="flex gap-x-12">
+            <div class="flex flex-wrap sm:flex-nowrap gap-4 sm:gap-x-12">
               <TextInput id="startYear" v-model="editForm.start_year" type="text" class="mt-1 block w-36" :placeholder="'Tahun Mulai'" required></TextInput>
               <TextInput id="endYear" v-model="editForm.end_year" type="text" class="mt-1 block w-36" :placeholder="'Tahun Selesai'"> required</TextInput>
             </div>

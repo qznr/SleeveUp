@@ -12,9 +12,9 @@
     <p class="text-wrap break-words whitespace-pre-wrap text-[381D4F]"> {{user.applicant.about_me}} </p>
   </div>
 
-  <Modal :show="showModal" @close="showModal = false" >
+  <Modal :show="showModal" @close="showModal = false" :maxWidth="'5xl'">
       <template v-slot>
-        <div class="p-6">
+        <div class="px-12 py-6 w-max">
           <h2 class="text-2xl mb-3 text-[381D4F]">Ubah Profil</h2>
           <form @submit.prevent="updateApplicant">
             <div class="mb-4">

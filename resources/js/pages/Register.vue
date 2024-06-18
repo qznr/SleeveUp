@@ -1,6 +1,6 @@
 <template>
   <section class="bg-gray-100">
-    <div class="flex flex-col items-center justify-center sm:px-6 py-8 mx-auto h-screen lg:py-0">
+    <div class="flex flex-col items-center justify-center sm:px-6 py-8 mx-auto h-screen lg:py-0 px-4 md:px-0">
       <div class="relative">
         <h3 class="text-gray-800 text-3xl font-semibold sm:text-4xl py-12">
           Sign up on SleeveUp!

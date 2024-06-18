@@ -91,7 +91,7 @@
           </div>
           <div class="mb-4">
             <label for="Durasi" class="block text-sm font-medium text-[381D4F]">Durasi Pengerjaan Project</label>
-            <div class="flex gap-x-12">
+            <div class="flex flex-wrap sm:flex-nowrap gap-4 sm:gap-x-12">
               <TextInput id="startMonth" v-model="addForm.start_month" type="text" class="mt-1 block" :placeholder="'Bulan'" required></TextInput>
               <TextInput id="startYear" v-model="addForm.start_year" type="text" class="mt-1 block" :placeholder="'Tahun'" required> </TextInput>
               <TextInput id="endMonth" v-model="addForm.end_month" type="text" class="mt-1 block" :placeholder="'Bulan'" required></TextInput>
@@ -130,11 +130,11 @@
           </div>
           <div class="mb-4">
             <label for="Durasi" class="block text-sm font-medium text-[381D4F]">Durasi Pengerjaan Project</label>
-            <div class="flex gap-x-12">
-              <TextInput id="startMonth" v-model="editForm.start_month" type="text" class="mt-1 block" :placeholder="'Bulan'" required></TextInput>
-              <TextInput id="startYear" v-model="editForm.start_year" type="text" class="mt-1 block" :placeholder="'Tahun'" required> </TextInput>
-              <TextInput id="endMonth" v-model="editForm.end_month" type="text" class="mt-1 block" :placeholder="'Bulan'" required></TextInput>
-              <TextInput id="endYear" v-model="editForm.end_year" type="text" class="mt-1 block" :placeholder="'Tahun'" required> </TextInput>
+            <div class="flex flex-wrap sm:flex-nowrap gap-4 sm:gap-x-12">
+              <TextInput id="startMonth" v-model="editForm.start_month" type="text" class="mt-1 block w-full sm:w-auto" :placeholder="'Bulan'" required></TextInput>
+              <TextInput id="startYear" v-model="editForm.start_year" type="text" class="mt-1 block w-full sm:w-auto" :placeholder="'Tahun'" required></TextInput>
+              <TextInput id="endMonth" v-model="editForm.end_month" type="text" class="mt-1 block w-full sm:w-auto" :placeholder="'Bulan'" required></TextInput>
+              <TextInput id="endYear" v-model="editForm.end_year" type="text" class="mt-1 block w-full sm:w-auto" :placeholder="'Tahun'" required></TextInput>
             </div>
           </div>
           <div class="mb-4">
