@@ -6,6 +6,7 @@
   <title>SleeveUP!</title>
   @vite('resources/css/app.css')
   @vite('resources/js/app.js')
+  <!-- <script src="https://cdn.lordicon.com/lordicon.js"></script> -->
 </head>
 <body>
   <div id="app">

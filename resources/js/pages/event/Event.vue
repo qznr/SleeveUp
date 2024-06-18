@@ -17,31 +17,7 @@
   </div>
 
   <!-- Loading Section -->
-  <div v-if="!eventLoaded" class="min-h-screen bg-[#151126] flex justify-center items-center">
-    <div class="flex items-center bg-white p-3 gap-x-4 rounded-lg">
-      <svg xmlns="http://www.w3.org/2000/svg" width="5em" height="5em" viewBox="0 0 24 24">
-        <rect width="10" height="10" x="1" y="1" fill="#5742F5" rx="1">
-          <animate id="svgSpinnersBlocksShuffle30" fill="freeze" attributeName="x" begin="0;svgSpinnersBlocksShuffle3b.end" dur="0.2s" values="1;13" />
-          <animate id="svgSpinnersBlocksShuffle31" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle38.end" dur="0.2s" values="1;13" />
-          <animate id="svgSpinnersBlocksShuffle32" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle39.end" dur="0.2s" values="13;1" />
-          <animate id="svgSpinnersBlocksShuffle33" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle3a.end" dur="0.2s" values="13;1" />
-        </rect>
-        <rect width="10" height="10" x="1" y="13" fill="#5742F5" rx="1">
-          <animate id="svgSpinnersBlocksShuffle34" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle30.end" dur="0.2s" values="13;1" />
-          <animate id="svgSpinnersBlocksShuffle35" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle31.end" dur="0.2s" values="1;13" />
-          <animate id="svgSpinnersBlocksShuffle36" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle32.end" dur="0.2s" values="1;13" />
-          <animate id="svgSpinnersBlocksShuffle37" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle33.end" dur="0.2s" values="13;1" />
-        </rect>
-        <rect width="10" height="10" x="13" y="13" fill="#5742F5" rx="1">
-          <animate id="svgSpinnersBlocksShuffle38" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle34.end" dur="0.2s" values="13;1" />
-          <animate id="svgSpinnersBlocksShuffle39" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle35.end" dur="0.2s" values="13;1" />
-          <animate id="svgSpinnersBlocksShuffle3a" fill="freeze" attributeName="x" begin="svgSpinnersBlocksShuffle36.end" dur="0.2s" values="1;13" />
-          <animate id="svgSpinnersBlocksShuffle3b" fill="freeze" attributeName="y" begin="svgSpinnersBlocksShuffle37.end" dur="0.2s" values="1;13" />
-        </rect>
-      </svg>
-      <h1 class="font-semibold text-5xl text-[381D4F]">Loading...</h1>
-    </div>
-  </div>
+  <Loading :loaded="!eventLoaded"></Loading>
 
   <!-- Error Section -->
   <div v-if="error" class="min-h-screen bg-[#151126] flex justify-center items-center">
@@ -50,7 +26,9 @@
 
   <!-- Empty Section -->
   <div v-if="eventLoaded && events.length === 0" class="min-h-screen bg-[#151126] flex justify-center items-center">
-    <h1 class="font-semibold text-5xl text-white">No Events found.</h1>
+    <div class="flex items-center bg-white p-6 gap-x-4 rounded-lg">
+      <h1 class="font-semibold text-5xl text-[381D4F]">No Events found</h1>
+    </div>
   </div>
 
   <!-- Event Listing Section -->
@@ -179,6 +157,8 @@ import SearchInput from '../../components/SearchInput.vue';
 import SelectMenu from '../../components/SelectMenu.vue';
 import debounce from 'lodash/debounce';
 import Modal from '../../components/Modal.vue';
+import Loading from '../../components/Loading.vue';
+
 import QRCode from 'qrcode';
 
 const events = ref([]);

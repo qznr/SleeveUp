@@ -19,9 +19,7 @@
     </div>
 
     <!-- Loading Section -->
-    <div v-if="!jobsLoaded" class="min-h-screen bg-[#151126] flex justify-center items-center">
-      <h1 class="font-semibold text-5xl text-white">Loading...</h1>
-    </div>
+    <Loading :loaded="!jobsLoaded"></Loading>
 
     <!-- Error Section -->
     <div v-if="error" class="min-h-screen bg-[#151126] flex justify-center items-center">
@@ -30,7 +28,9 @@
 
     <!-- Empty Section -->
     <div v-if="jobsLoaded && jobs.length === 0" class="min-h-screen bg-[#151126] flex justify-center items-center">
-      <h1 class="font-semibold text-5xl text-white">No jobs found.</h1>
+      <div class="flex items-center bg-white p-6 gap-x-4 rounded-lg">
+        <h1 class="font-semibold text-5xl text-[381D4F]">No Jobs found</h1>
+      </div>
     </div>
 
 
@@ -81,6 +81,7 @@ import axios from 'axios';
 import SearchInput from '../../components/SearchInput.vue';
 import SelectMenu from '../../components/SelectMenu.vue';
 import debounce from 'lodash/debounce';
+import Loading from '../../components/Loading.vue';
 
 // Reactive references to hold the jobs data, loading state, and pagination details
 const jobs = ref([]);

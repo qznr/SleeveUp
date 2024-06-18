@@ -1,7 +1,7 @@
 <template>
-  <div v-if="!job" class="min-h-screen bg-[151126] flex justify-center items-center">
-    <h1 class="font-semibold text-5xl text-white">Loading...</h1>
-  </div>
+  <!-- Loading Section -->
+  <Loading :loaded="!job"></Loading>
+  
   <div v-if="job" class="bg-[151126]">
     <div class="flex flex-col lg:flex-row max-w-5xl mx-auto py-6 mb-6 rounded-xl items-center">
         <img :src="job.company.img" class="rounded-full w-44 h-44 lg:w-52 lg:h-52">
@@ -126,6 +126,7 @@ import { ref, onMounted, defineProps, computed} from 'vue';
 import axios from 'axios';
 import Modal from '../../components/Modal.vue';
 import { useUserStore } from '../../stores/userStore';
+import Loading from '../../components/Loading.vue';
 
 const props = defineProps({
   jobId: {

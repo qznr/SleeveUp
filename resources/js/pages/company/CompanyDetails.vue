@@ -1,7 +1,7 @@
 <template>
-  <div v-if="!company" class="min-h-screen bg-[151126] flex justify-center items-center">
-    <h1 class="font-semibold text-5xl text-white">Loading...</h1>
-  </div>
+  <!-- Loading Section -->
+  <Loading :loaded="!company"></Loading>
+
   <div v-if="company" class="bg-[151126]">
     <div class="flex flex-col lg:flex-row max-w-5xl mx-auto py-6 mb-6 rounded-xl items-center">
         <img :src="company.img" class="rounded-full inline-block lg:w-44 lg:h-44 w-52 h-52">
@@ -63,6 +63,7 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import axios from 'axios';
+import Loading from '../../components/Loading.vue';
 
 const company = ref(null);
 const professions = ref({});
