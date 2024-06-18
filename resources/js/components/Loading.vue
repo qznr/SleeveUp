@@ -1,7 +1,7 @@
 <template>
   <!-- Loading Section -->
   <div v-if="loaded" class="min-h-screen bg-[#151126] flex justify-center items-center">
-    <div class="flex items-center bg-white p-3 gap-x-4 rounded-lg">
+    <div class="flex items-center bg-white p-6 gap-x-4 rounded-lg">
       <svg xmlns="http://www.w3.org/2000/svg" width="5em" height="5em" viewBox="0 0 24 24">
         <rect width="10" height="10" x="1" y="1" fill="#5742F5" rx="1">
           <animate id="svgSpinnersBlocksShuffle30" fill="freeze" attributeName="x" begin="0;svgSpinnersBlocksShuffle3b.end" dur="0.2s" values="1;13" />
