@@ -34,8 +34,8 @@
 
   <!-- Company Listing Section -->
   <div v-if="companyLoaded" class="bg-[#151126] pb-6">
-    <ul class="max-w-7xl mx-auto">
-      <li v-for="company in companies" :key="company.id" class="flex flex-col md:flex-row justify-between items-start md:items-end bg-white xl:mx-auto mx-12 mb-6 rounded-xl py-8 px-8">
+    <ul class="max-w-7xl mx-auto px-4 md:px-0">
+      <li v-for="company in companies" :key="company.id" class="flex flex-col md:flex-row justify-between items-start md:items-end bg-white mb-6 rounded-xl p-4 md:p-8">
         <div class="flex flex-col md:flex-row w-full">
           <img :src="company.img" class="size-48 md:size-64">
           <div class="w-full md:w-auto md:ml-4 mt-4 md:mt-0">
@@ -63,7 +63,7 @@
         <a :href="`/explore-companies/${company.id}`" class="bg-[#5742F5] py-3 px-12 rounded-lg text-white font-semibold mt-4 md:mt-0">Details</a>
       </li>
     </ul>
-    <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <div class="max-w-7xl mx-auto px-4 md:px-0 flex justify-between items-center">
       <button @click="prevPage" :disabled="currentPage === 1" class="bg-[#5742F5] py-2 px-4 rounded-lg text-white font-semibold">Previous</button>
       <span class="text-white">Page {{ currentPage }} of {{ totalPages }}</span>
       <button @click="nextPage" :disabled="currentPage === totalPages" class="bg-[#5742F5] py-2 px-4 rounded-lg text-white font-semibold">Next</button>
