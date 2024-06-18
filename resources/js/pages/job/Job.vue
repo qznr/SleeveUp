@@ -178,3 +178,13 @@ onMounted(() => {
   fetchUniqueValues('/job/unique_types', typeOptions);
 });
 </script>
+
+<style scoped>
+/* Add any specific styles for the card here */
+li {
+  transition: transform 0.15s ease;
+}
+li:hover {
+  transform: scale(1.05);
+}
+</style>
